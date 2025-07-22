@@ -1,0 +1,305 @@
+﻿@{
+    Layout = null;
+    var user = new UserInfo(Context.User);
+    var language = Context.Request.Cookies["lang"] ?? "en";
+    var languages = AppSettingProvider.AppSettings.LanguageSupports;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@SharedLocalizer["Recruitment"] - CareerTech</title>
+
+    <link rel="icon" type="image/svg" href="~/images/logo.svg" class="img-fluid" />
+    <link rel="stylesheet" type="text/css" href="~/public/vendor/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker-min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-select-min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" />
+    <link rel="stylesheet" href="~/public/css/sb-admin-2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/public/vendor/datatables/dataTables.bootstrap4.css" />
+    <link rel="stylesheet" href="/public/vendor/datatables/rowGroup.bootstrap4.css"/>
+</head>
+<body id="page-top">
+    <div id="wrapper">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #2a553a !important;">
+            <li>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/recruiters/dashboard">
+                    <div class="sidebar-brand-icon">
+                        <img src="~/images/logo.svg" class="img-fluid" style="max-width:50px;"/>
+                    </div>
+                    <div b-cxmf3ybdw9="" class="sidebar-brand-text mx-3">Recruitment - Career Tech</div>
+                </a>
+            </li>
+
+            <li>
+                <hr class="sidebar-divider my-0"/>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Dashboard", "Recruiter")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <hr class="sidebar-divider"/>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                   data-target="#collapseOption" aria-expanded="false"
+                   aria-controls="collapseOption">
+                    <i class="far fa-id-card"></i>
+                    <span class="text-wrap">@SharedLocalizer["Information"]</span>
+                </a>
+                <div id="collapseOption" class="collapse" aria-labelledby="headingOption" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item menu-link text-wrap" asp-controller="Recruiter" asp-action="Detail" data-link="recruiters" asp-route-userId="@user.Id">@SharedLocalizer["Basic Information"]</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse"
+                   data-target="#collapseOption2" aria-expanded="false"
+                   aria-controls="collapseOption2">
+                    <i class="far fa-id-card"></i>
+                    <span class="text-wrap">@SharedLocalizer["Recruitment Management"]</span>
+                </a>
+                <div id="collapseOption2" class="collapse" aria-labelledby="headingOption2" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @if (user?.VerifyStatus == EVerifyStatus.Approved.ToString())
+                        {
+                            <a class="collapse-item menu-link text-wrap" asp-controller="Recruiter" asp-action="RenderViewRecruiterJobPosts" data-link="recruiterJobPosts" asp-route-userId="@user?.Id">@SharedLocalizer["Jost Post"]</a>
+                            <a class="collapse-item menu-link text-wrap" asp-controller="Recruiter" asp-action="RenderViewApplicantsPublic" data-link="recruiterApplicantsPuclic">@SharedLocalizer["Applicant"]</a>
+                        }
+                    </div>
+                </div>
+            </li>
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0 custom-button" id="sidebarToggle"></button>
+            </div>
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <form class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
+                        <div class="mt-2">
+                            <select class="selectpicker form-control" onchange="changeLanguage(this)">
+                                @{
+                                    foreach (var item in languages)
+                                    {
+                                        if (language == item.Code)
+                                        {
+                                            <option value="@item.Code" selected
+                                                    data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'></span>">
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Code"
+                                                    data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'></span>">
+                                            </option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </form>
+                    
+                    <ul class="navbar-nav ml-auto nav-adjust-left">
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li><div class="topbar-divider d-none d-sm-block"></div></li>
+                        <li class="nav-item dropdown no-arrow">
+                            @{
+                                if (user == null)
+                                {
+                                    <a class="nav-link" href="/login">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@SharedLocalizer["lblLogin"]</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user?.Name</span>
+                                        @{
+                                            if (user?.Avatar != null && !string.IsNullOrEmpty(user?.Avatar))
+                                            {
+                                                <img class="img-profile rounded-circle" src="@user?.Avatar" alt="User profile">
+                                            }
+                                            else
+                                            {
+                                                <img class="img-profile rounded-circle" src="~/admin/img/undraw_profile.svg" alt="User profile">
+                                            }
+                                        }
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown">
+                                        <button class="dropdown-item" data-userid="@user?.Id" onclick="showModalChangePassword(this)" href="#" data-toggle="modal" data-target="#changePasswordUserModal">
+                                            <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            @SharedLocalizer["Change Password"]
+                                        </button>
+                                        <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            @SharedLocalizer["Logout"]
+                                        </button>
+                                    </div>
+                                }
+                            }
+
+                        </li>
+                    </ul>
+                </nav>
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; by Career Tech</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <div class="mt-5">
+        @await Html.PartialAsync(ViewMapping.ViewChangePassword)
+    </div>
+    <div class="mt-5">
+        @await Html.PartialAsync(ViewMapping.ViewLogout)
+    </div>
+
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <script src="~/public/vendor/jquery/jquery.min.js"></script>
+    <script src="~/public/vendor/datatables/dataTables.js"></script>
+    <script src="~/public/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/public/vendor/datatables/rowGroup.bootstrap4.js"></script>
+    <script src="~/public/vendor/datatables/dataTables.rowGroup.js"></script>
+    <script src="~/public/vendor/datatables/dataTables.fixedColumns.js"></script>
+    <script src="~/public/vendor/datatables/fixedColumns.dataTables.js"></script>
+    <script src="~/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/public/js/sb-admin-2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="~/js/bootstrap-datepicker-min.js"></script>
+    <script src="~/js/bootstrap-select-min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/function.js"></script>
+    <script>
+        $(document).ready(function () {
+            const activeLink = sessionStorage.getItem('activeLink');
+            $('.collapse:not(#filterContent)').removeClass('show');
+            $('[data-toggle="collapse"]').attr('aria-expanded', 'false');
+            $('.nav-item').removeClass('active');
+
+            const collapseItem = $('.collapseItem');
+            const cardHeader = $('.card-header[data-toggle="collapse"]');
+
+            if (collapseItem.length && !collapseItem.hasClass('show')) {
+                collapseItem.addClass('show');
+                cardHeader.attr('aria-expanded', 'true');
+            }
+
+            function setActiveStateFromUrl() {
+                const currentPath = window.location.pathname;
+
+                if (currentPath.includes('/recruitments/dashboard')) {
+                    sessionStorage.setItem('activeLink', 'dashboard');
+                    $('#accordionSidebar .nav-item').first().addClass('active');
+                }
+                else if (activeLink) {
+                    const activeMenuItem = $('.menu-link[data-link="' + activeLink + '"]');
+                    if (activeMenuItem.length) {
+                        activeMenuItem.addClass('active');
+                        const targetCollapse = activeMenuItem.closest('.collapse');
+                        targetCollapse.addClass('show');
+                        $('a[data-target="#' + targetCollapse.attr('id') + '"]')
+                            .attr('aria-expanded', 'true')
+                            .closest('.nav-item')
+                            .addClass('active');
+                    }
+                }
+            }
+
+            setActiveStateFromUrl();
+
+            $('.menu-link').click(function () {
+                const linkData = $(this).data('link');
+                sessionStorage.setItem('activeLink', linkData);
+                $('.nav-item').removeClass('active');
+                $('.menu-link').removeClass('active');
+                $(this).addClass('active');
+                $(this).closest('.nav-item').addClass('active');
+            });
+
+            $('a[href*="dashboard"]').click(function () {
+                sessionStorage.setItem('activeLink', 'dashboard');
+                $('.collapse').removeClass('show');
+                $('[data-toggle="collapse"]').attr('aria-expanded', 'false');
+                $('.menu-link').removeClass('active');
+                $('.nav-item').removeClass('active');
+                $(this).closest('.nav-item').addClass('active');
+            });
+
+            cardHeader.click(function () {
+                const isExpanded = $(this).attr('aria-expanded') === 'true';
+                $(this).attr('aria-expanded', !isExpanded);
+            });
+
+            $(".collapse-inner").each(function () {
+                var elementParent = $(this).closest("li");
+                var hrElement = elementParent.next("li");
+                if ($(this).find(".collapse-item.menu-link:not(.d-none)").length === 0) {
+                    elementParent.remove();
+                    if (hrElement.find("hr")) {
+                        hrElement.remove();
+                    }
+                }
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

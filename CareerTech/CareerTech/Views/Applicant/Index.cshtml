@@ -1,0 +1,271 @@
+﻿@{
+    Layout = "_Layout";
+    var user = new UserInfo(Context.User);
+    var jobPosts = ViewData["jobPosts"] != null ? ViewData["jobPosts"] as List<JobPostResponseDto> : [];
+    var recruiters = ViewData["recruiters"] != null ? ViewData["recruiters"] as List<RecruiterPublicDto> : [];
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0">@SharedLocalizer["Newest blog"]</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/sinh-vien-khong-hoc-it-van-co-the-lam-trong-nganh-cong-nghe-duoc-khong/" target="_blank">
+                    <img src="~/public/images/img_title1.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/sinh-vien-khong-hoc-it-van-co-the-lam-trong-nganh-cong-nghe-duoc-khong/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Sinh viên không học IT vẫn có thể làm trong ngành...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/sinh-vien-nen-ung-tuyen-internship-o-cong-ty-startup-hay-tap-doan-lon/" target="_blank">
+                    <img src="~/public/images/img_title2.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/sinh-vien-nen-ung-tuyen-internship-o-cong-ty-startup-hay-tap-doan-lon/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Sinh viên nên ứng tuyển internship ở công ty startup hay...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/phong-van-that-bai-va-cach-danh-gia-ban-than-de-quay-lai-manh-me-hon/" target="_blank">
+                    <img src="~/public/images/img_title3.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/phong-van-that-bai-va-cach-danh-gia-ban-than-de-quay-lai-manh-me-hon//" target="_blank" class="text-dark text-decoration-none d-block">
+                            Phỏng vấn thất bại và Cách đánh giá bản thân để..
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/cv-sinh-vien-can-co-gi-khi-chua-co-kinh-nghiem-bi-kip-gay-an-tuong-tu-trang-giay-trang/" target="_blank">
+                    <img src="~/public/images/img_title4.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/cv-sinh-vien-can-co-gi-khi-chua-co-kinh-nghiem-bi-kip-gay-an-tuong-tu-trang-giay-trang/" target="_blank" class="text-dark text-decoration-none d-block">
+                            CV sinh viên cần có gì khi chưa có kinh nghiệm?...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/sinh-vien-can-chuan-bi-gi-cho-buoi-phong-van-ung-tuyen-dau-tien-huong-dan-song-sot-danh-cho-ga-moi/" target="_blank">
+                    <img src="~/public/images/img_title5.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/sinh-vien-can-chuan-bi-gi-cho-buoi-phong-van-ung-tuyen-dau-tien-huong-dan-song-sot-danh-cho-ga-moi/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Sinh viên cần chuẩn bị gì cho buổi phỏng vấn ứng...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/nganh-nao-dang-khat-nhan-luc-tai-viet-nam/" target="_blank">
+                    <img src="~/public/images/img_title6.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/nganh-nao-dang-khat-nhan-luc-tai-viet-nam/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Ngành nào đang khát nhân lực tại Việt Nam? (2025)
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/luong-nganh-it-co-that-su-cao-so-sanh-top-5-muc-luong-vi-tri-it-pho-bien/" target="_blank">
+                    <img src="~/public/images/img_title7.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/luong-nganh-it-co-that-su-cao-so-sanh-top-5-muc-luong-vi-tri-it-pho-bien/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Lương ngành IT có thật sự cao? So sánh top 5...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <a href="https://topdev.vn/blog/top-10-nganh-nghe-cho-sinh-vien-moi-tot-nghiep-2025-bat-dau-tu-dau-giua-thoi-dai-chuyen-minh/" target="_blank">
+                    <img src="~/public/images/img_title8.jpg" class="card-img-top">
+                </a>
+                <div class="card-body p-2">
+                    <h6 class="card-title mb-0">
+                        <a href="https://topdev.vn/blog/top-10-nganh-nghe-cho-sinh-vien-moi-tot-nghiep-2025-bat-dau-tu-dau-giua-thoi-dai-chuyen-minh/" target="_blank" class="text-dark text-decoration-none d-block">
+                            Top 10 ngành nghề cho sinh viên mới tốt nghiệp 2025:...
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (recruiters != null)
+    {
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">@SharedLocalizer["Top Recruiters"]</h5>
+                <a href="/applicants/public-recruiters" class="btn btn-outline-primary btn-sm">
+                    @SharedLocalizer["View more"]
+                </a>
+            </div>
+            <div class="row">
+                @foreach (var recruiter in recruiters)
+                {
+                    <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
+                        <a href="/applicants/public-recruiters/@recruiter.UserId" class="text-decoration-none text-dark d-block h-100 w-100">
+                            <div class="job-card-custom1 position-relative-custom1 d-flex flex-column align-items-center justify-content-center text-center p-3 w-100 h-100 border rounded  ">
+                                <h5 class="mt-2 font-weight-bold">@recruiter.RecruiterName</h5>
+                                @{
+                                    if (recruiter.RecuiterAvatar != null)
+                                    {
+                                        <img src="@recruiter.RecuiterAvatar" class="avatar-lg2" />
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center mr-3">
+                                            <div class="avatar-lg2 d-flex justify-content-center align-items-center bg-light border shadow-sm">
+                                                <i class="fas fa-building text-secondary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                @{
+                                    if (recruiter.CompanySize != null)
+                                    {
+                                        <p class="mt-2 small text-muted">
+                                            <i class="fas fa-users text-secondary mr-2"></i>
+                                            @SharedLocalizer[$"{CompanySizeHelper.ToLabel(recruiter.CompanySize.Value)}"]
+                                        </p>
+                                    }
+                                }
+                                @{
+                                    if (recruiter.WorkSchedule != null)
+                                    {
+                                        <p class="small text-muted">
+                                            <i class="far fa-calendar text-secondary mr-2"></i>
+                                            @SharedLocalizer[$"{WorkScheduleHelper.ToLabel(recruiter.WorkSchedule.Value)}"]
+                                        </p>
+                                    }
+                                }
+                                @{
+                                    if (recruiter.JobPostPuclic != 0)
+                                    {
+                                        <p class="small text-muted">
+                                            <i class="far fas fa-briefcase text-secondary mr-2"></i>
+                                            @recruiter.JobPostPuclic @SharedLocalizer["jobs"]
+                                        </p>
+                                    }
+                                }
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+
+@{
+    if (jobPosts != null)
+    {
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">@SharedLocalizer["Top Recent Job Postings"]</h5>
+                <a href="/applicants/jobs" class="btn btn-outline-primary btn-sm">
+                    @SharedLocalizer["View more"]
+                </a>
+            </div>
+            <div class="row">
+                @foreach (var jobPost in jobPosts)
+                {
+                    <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
+                        <a href="/applicants/jobs/@jobPost.Id" class="text-decoration-none text-dark d-block h-100 w-100">
+                            <div class="job-card-custom1 position-relative-custom1 d-flex flex-column align-items-center justify-content-center text-center p-3 w-100 h-100 border rounded  ">
+                                <h5 class="mt-2 font-weight-bold">@jobPost.Title</h5>
+                                @{
+                                    if (jobPost.AvatarRecruiter != null)
+                                    {
+                                        <img src="@jobPost.AvatarRecruiter" class="avatar-lg2" />
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center mr-3">
+                                            <div class="avatar-lg2 d-flex justify-content-center align-items-center bg-light border shadow-sm">
+                                                <i class="fas fa-building text-secondary fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                <span class="text-success font-weight-bold mt-1">
+                                    @{
+                                        string salaryText = jobPost.MinSalary.HasValue && jobPost.MaxSalary.HasValue ? $"{jobPost.MinSalary:N0} - {jobPost.MaxSalary:N0} {jobPost.CurrencySalary}" : jobPost.MinSalary.HasValue ? $"{SharedLocalizer["Minimum"].Value}: {jobPost.MinSalary:N0} {jobPost.CurrencySalary}" : jobPost.MaxSalary.HasValue ? $"{SharedLocalizer["Maximum"].Value}: {jobPost.MaxSalary:N0} {jobPost.CurrencySalary}" : SharedLocalizer["Negotiable"].Value;
+                                    }
+                                    @salaryText
+                                </span>
+
+                                <div class="mt-1">
+                                    <span class="badge-clean">@SharedLocalizer[$"{ConvertLevel.ConvertExperienceLevel(jobPost.ExperienceYear)}"]</span>
+                                    @if (jobPost.Province?.Any() == true)
+                                    {
+                                        @foreach (var province in jobPost.Province)
+                                        {
+                                            <span class="badge-clean">@province.Name</span>
+                                        }
+                                    }
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        @if (jobPost.Level?.Any() == true)
+                                        {
+                                            @foreach (var level in jobPost.Level)
+                                            {
+                                                <span class="badge-clean">@level.Name</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}

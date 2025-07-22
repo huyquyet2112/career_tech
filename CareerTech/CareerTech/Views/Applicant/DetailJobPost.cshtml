@@ -1,0 +1,425 @@
+﻿@model JobPostPublicDetailDto
+@{
+    Layout = "_Layout";
+    var jobPost = Model;
+    var groupSkills = ViewData["jdSkill"] != null ? ViewData["jdSkill"] as List<JdGroupSkillResponseDto> : [];
+    var jdLevels = ViewData["jdLevel"] != null ? ViewData["jdLevel"] as List<LevelResponseDto> : [];
+    var jdProvinces = ViewData["jdProvince"] != null ? ViewData["jdProvince"] as List<ProvinceResponseDto> : [];
+    var domains = ViewData["domains"] != null ? ViewData["domains"] as List<Domain> : [];
+    var listGroupDomains = domains?.GroupBy(us => us?.GroupDomain?.Name);
+    var recruitmentsDomain = ViewData["recruitmentDomains"] != null ? ViewData["recruitmentDomains"] as List<GroupDomainRecruiterDto> : [];
+    var recruitmentDetail = ViewData["recruitmentDetail"] != null ? ViewData["recruitmentDetail"] as RecruiterDetail : null;
+    var user = new UserInfo(this.Context.User);
+    var isLogin = (this.Context?.User?.Identity?.IsAuthenticated ?? false)
+              && user.Role == EUserRole.Applicant.ToString();
+}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4>@jobPost.Title</h4>
+                    <div class="row mb-3">
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            @{
+                                string salaryText = "";
+
+                                if (jobPost.MinSalary.HasValue && !jobPost.MaxSalary.HasValue)
+                                {
+                                    salaryText = $"{SharedLocalizer["Minimum"].Value}: {jobPost.MinSalary.Value:N0} {jobPost.CurrencySalary}";
+                                }
+                                else if (!jobPost.MinSalary.HasValue && jobPost.MaxSalary.HasValue)
+                                {
+                                    salaryText = $"{SharedLocalizer["Maximum"].Value}: {jobPost.MaxSalary.Value:N0} {jobPost.CurrencySalary}";
+                                }
+                                else if (jobPost.MinSalary.HasValue && jobPost.MaxSalary.HasValue)
+                                {
+                                    salaryText = $"{jobPost.MinSalary.Value:N0} - {jobPost.MaxSalary.Value:N0} {jobPost.CurrencySalary}";
+                                }
+
+                                <div class="">
+                                    <small class="text-muted">@SharedLocalizer["Salary"]</small><br />
+                                    @if (!string.IsNullOrEmpty(salaryText))
+                                    {
+                                        <strong>@salaryText</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong>@SharedLocalizer["Negotiable"]</strong>
+                                    }
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-briefcase text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Experience Year"]</small><br />
+                                <strong>
+                                    @{
+                                        foreach (EExperienceYear experience in Enum.GetValues(typeof(EExperienceYear)))
+                                        {
+                                            var convertExperienceYear = experience.ConvertExperienceLevel();
+                                            if (experience == jobPost.ExperienceYear)
+                                            {
+                                                @SharedLocalizer[$"{convertExperienceYear}"]
+                                            }
+                                        }
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-tasks text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Working Type"]</small><br />
+                                <strong>
+                                    @{
+                                        foreach (EWorkingType workingtype in Enum.GetValues(typeof(EWorkingType)))
+                                        {
+                                            if (workingtype == jobPost.WorkingType)
+                                            {
+                                                @SharedLocalizer[$"{workingtype}"]
+                                            }
+                                        }
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-map-marker-alt text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Province"]</small><br />
+                                <strong>
+                                    @{
+                                        string locationText = "";
+
+                                        if (jdProvinces != null)
+                                        {
+                                            var selectedNames = jdProvinces
+                                            .Where(p => p.isSelected)
+                                            .Select(p => p.Name)
+                                            .ToList();
+
+                                            locationText = string.Join(", ", selectedNames);
+                                        }
+                                    }
+                                    @locationText
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-layer-group text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Level"]</small><br />
+                                <strong>
+                                    @{
+                                        var selectedLevel = jdLevels?.Where(x => x.IsSelected).Select(x => x.Name).ToList() ?? new List<string>();
+                                        var levelText = string.Join(", ", selectedLevel);
+                                        @levelText
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-users text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Quantity"]</small><br />
+                                <strong>
+                                    @jobPost.Quantity
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-clock text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["End Date"]</small><br />
+                                <strong>
+                                    @jobPost.EndDate?.ToString("yyyy/MM/dd")
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8 d-flex justify-content-md-end justify-content-center align-items-center gap-2 mt-2 mt-md-0">
+                            <button class="btn btn-success px-4 mr-2"
+                                    type="button"
+                                    onclick="handleApplyClick(this)"
+                                    is-login="@isLogin.ToString().ToLower()"
+                                    data-userid="@user?.Id"
+                                    data-jobPostid="@jobPost.Id">
+                                <i class="fas fa-paper-plane mr-1"></i>
+                                @if (jobPost.IsApplied == true)
+                                {
+                                    @SharedLocalizer["Apply Again"]
+                                }
+                                else
+                                {
+                                    @SharedLocalizer["Apply"]
+                                }
+                            </button>
+
+                            <button class="btn btn-outline-secondary"
+                                    type="button"
+                                    onclick="handleSaveJob(this)"
+                                    is-login="@isLogin.ToString().ToLower()"
+                                    data-userid="@user?.Id"
+                                    data-jobPostid="@jobPost.Id"
+                                    data-isSaved="@jobPost.IsSaved?.ToString().ToLower()">
+                                <i class="far fa-heart @(jobPost.IsSaved == true ? "text-danger fas" : "")"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="mb-0 font-weight-bold">
+                                <i class="fas fa-info-circle text-secondary mr-2"></i>@SharedLocalizer["Job Details"]
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-12">
+                            <label class="font-weight-bold">@SharedLocalizer["Domain"]: </label>
+                            @{
+                                if (domains != null)
+                                {
+                                    foreach (var domain in domains)
+                                    {
+                                        if (jobPost.DomainId == domain.Id)
+                                        {
+                                            <span class="mt-1">@domain.Name</span>
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                    @{
+                        var selectedSkillNames = new List<string>();
+
+                        if (groupSkills != null)
+                        {
+                            foreach (var groupSkill in groupSkills)
+                            {
+                                foreach (var skill in groupSkill.Skills)
+                                {
+                                    if (skill.IsSelected)
+                                    {
+                                        selectedSkillNames.Add(skill.Name);
+                                    }
+                                }
+                            }
+                        }
+
+                        var skillText = string.Join(", ", selectedSkillNames);
+
+                        if (!string.IsNullOrEmpty(skillText))
+                        {
+                            <div class="row mb-1">
+                                <div class="col-md-12">
+                                    <label class="font-weight-bold">@SharedLocalizer["Skill"]: </label>
+                                    <span>@skillText</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <div class="row mb-1">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">@SharedLocalizer["Description"]</label>
+                            <div>
+                                @Html.Raw(jobPost.Description)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">@SharedLocalizer["Requirement"]</label>
+                            <div>
+                                @Html.Raw(jobPost.Requirement)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">@SharedLocalizer["Benefit"]</label>
+                            <div>
+                                @Html.Raw(jobPost.Benefits)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-12">
+                            <label class="font-weight-bold">@SharedLocalizer["Work Location"]</label>
+                            <div>
+                                @Html.Raw(jobPost.WorkLocation)
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        if (jobPost.WorkingHours != null)
+                        {
+                            <div class="row mb-1">
+                                <div class="col-md-12">
+                                    <label class="font-weight-bold">@SharedLocalizer["Working Hour"]</label>
+                                    <div>
+                                        @Html.Raw(jobPost.WorkingHours)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row mb-1">
+                        <div class="col-5">
+                            @{
+                                if (recruitmentDetail?.Avatar != null)
+                                {
+                                    <img src="@recruitmentDetail.Avatar" alt="Logo" class="avatar-recruiter mr-3">
+                                }
+                                else
+                                {
+                                    @await Html.PartialAsync(ViewMapping.ViewDefaultCompany)
+                                }
+                            }
+                        </div>
+                        <div class="col-7">
+                            <h6 class="font-weight-bold">@recruitmentDetail?.Name</h6>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-5">
+                            <i class="fas fa-users mr-2 text-muted"></i>
+                            @SharedLocalizer["Size"]
+                        </div>
+                        <div class="col-7">
+                            @if (recruitmentDetail?.CompanySize != null)
+                            {
+                                <span>
+                                    @SharedLocalizer[$"{CompanySizeHelper.ToLabel(recruitmentDetail.CompanySize.Value)}"]
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-5">
+                            <i class="fas fa-folder-open mr-2 text-muted"></i>
+                            @SharedLocalizer["Domain"]
+                        </div>
+                        <div class="col-7">
+                            @{
+                                var selectedDomainRecruiter = new List<string>();
+
+                                if (recruitmentsDomain != null)
+                                {
+                                    foreach (var domain in recruitmentsDomain)
+                                    {
+
+                                        if (domain.IsSelected == true)
+                                        {
+                                            selectedDomainRecruiter.Add(domain.Name);
+                                        }
+
+                                    }
+                                }
+
+                                var domainText = string.Join(" | ", selectedDomainRecruiter.Select(d => SharedLocalizer[d].Value));
+
+                                if (!string.IsNullOrEmpty(domainText))
+                                {
+                                    <span>@domainText</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-5">
+                            <i class="fas fa-map-marker-alt mr-2 text-muted"></i>
+                            @SharedLocalizer["Province"]
+                        </div>
+                        <div class="col-7">
+                            <span>@recruitmentDetail?.Address</span>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-12">
+                            <a href="/applicants/public-recruiters/@recruitmentDetail?.UserId" class="text-secondary font-weight-bold text-decoration-none">
+                                <i class="fas fa-building mr-1 text-muted"></i>
+                                @SharedLocalizer["Company Page"]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="applyJobModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="applyJobLabel" aria-hidden="true">
+    <div class="modal-dialog" enctype="multipart/form-data">
+        <form id="formApplyJob">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewSkillLabel">@SharedLocalizer["Apply Job"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="description" class="form-label">@SharedLocalizer["Description"]</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                    <button type="submit" class="btn btn-primary">@SharedLocalizer["Save"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/jobs-detail.js"></script>
+    <script>
+        var stringLocalizer = {
+            NoFilesAvailable: '@SharedLocalizer["No files available"]',
+            SelectFile: '@SharedLocalizer["Select file"]',
+            UploadFromDevice: '@SharedLocalizer["Upload from device"]',
+            SelectUploadedCV: '@SharedLocalizer["Select uploaded CV"]',
+            Description: '@SharedLocalizer["Description"]'
+        }
+    </script>
+}

@@ -1,0 +1,285 @@
+﻿@model ApplicantDetail
+@{
+    Layout = "_LayoutAdmin";
+    var applicant = Model;
+    var groupSkills = ViewData["applicantSkills"] != null ? ViewData["applicantSkills"] as List<GroupSkillResponseDto> : [];
+    var cvFiles = ViewData["applicantCvFiles"] != null ? ViewData["applicantCvFiles"] as List<CvFile> : [];
+    var applicantLevels = ViewData["applicantLevels"] != null ? ViewData["applicantLevels"] as List<LevelResponseDto> : [];
+    var applicantProvinces = ViewData["applicantProvinces"] != null ? ViewData["applicantProvinces"] as List<ProvinceResponseDto> : [];
+}
+
+<div class="container">
+    <h2 class="mb-4">@SharedLocalizer["Personal Information"]</h2>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-2">
+        <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-4" type="button" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> @SharedLocalizer["Go Back"]
+        </button>
+    </div>
+
+    <ul class="nav nav-pills mb-3" id="profileTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="basic-tab" data-toggle="pill" href="#basic" role="tab">@SharedLocalizer["Basic Information"]</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="resume-tab" data-toggle="pill" href="#resume" role="tab">@SharedLocalizer["Resume"]</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="skill-tab" data-toggle="pill" href="#skill" role="tab">@SharedLocalizer["Skill"]</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="other-tab" data-toggle="pill" href="#other" role="tab">@SharedLocalizer["Other"]</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="profileTabsContent">
+        <div class="tab-pane fade show active" id="basic" role="tabpanel">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row mb-5 justify-content-center text-center">
+                        <div>
+                            <div class="bg-light rounded-circle avatar-container custom-avatar-detail" id="imageAvatar">
+                                @if (applicant?.Avatar != default)
+                                {
+                                    <img src="@applicant?.Avatar" class="rounded-circle img-fluid w-100 h-100 image-custom image-custom" />
+                                }
+                                else
+                                {
+                                    @await Html.PartialAsync(ViewMapping.ViewDefaultAvatar)
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-user"></i>
+                                        @SharedLocalizer["Name"]
+                                    </div>
+                                    <div class="info-value">@applicant?.Name</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-venus-mars"></i>
+                                        @SharedLocalizer["Gender"]
+                                    </div>
+                                    <div class="info-value">
+                                        @foreach (EGender gender in Enum.GetValues(typeof(EGender)))
+                                        {
+                                            if (gender == applicant?.Gender)
+                                            {
+                                                @SharedLocalizer[$"{gender}"]
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-envelope"></i>
+                                        @SharedLocalizer["Email"]
+                                    </div>
+                                    <div class="info-value">@applicant?.Email</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-phone"></i>
+                                        @SharedLocalizer["Phone Number"]
+                                    </div>
+                                    <div class="info-value">@applicant?.PhoneNumber</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-birthday-cake"></i>
+                                        @SharedLocalizer["Birthday"]
+                                    </div>
+                                    <div class="info-value">@applicant?.Birthday?.ToString("yyyy/MM/dd")</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        @SharedLocalizer["Address"]
+                                    </div>
+                                    <div class="info-value">@applicant?.Address</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-divider"></div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="info-item description-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-file-alt"></i>
+                                        @SharedLocalizer["Description"]
+                                    </div>
+                                    <div class="info-value">@applicant?.Description</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="resume" role="tabpanel">
+            <div class="card shadow">
+                <div class="card-body">
+                    @if (cvFiles == null || cvFiles.Count == 0)
+                    {
+                        <div class="text-center mb-3 cvNotFound">
+                            <h5 class="text-muted">@SharedLocalizer["CvNotFound"]</h5>
+                        </div>
+                    }
+
+                    <div class="row rowCVFile">
+                        @if (cvFiles?.Any() == true)
+                        {
+                            foreach (var cvFile in cvFiles)
+                            {
+                                <div class="col-md-12 mb-3">
+                                    <div class="card border-0 bg-light">
+                                        <div class="card-body d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a class="text-decoration-none fw-bold" href="data:application/pdf;base64,@cvFile.UrlFile" download="@cvFile.Name">
+                                                    <i class="fas fa-file-pdf me-2 text-danger"></i>@cvFile.Name
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="skill" role="tabpanel">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex gap-5 justify-content-between align-items-center">
+                                <h5 class="fs-5 fw-bold">@SharedLocalizer["Skill"]</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        @if (groupSkills != null && groupSkills.Any())
+                        {
+                            foreach (var group in groupSkills)
+                            {
+                                var selectedSkills = group.Skills.Where(s => s.IsSelected).ToList();
+
+                                if (selectedSkills.Any())
+                                {
+                                    <div class="col-12 mb-4">
+                                        <span class="mb-3">@group.Name</span>
+
+                                        <div class="row">
+                                            @foreach (var skill in selectedSkills)
+                                            {
+                                                <div class="col-6 col-md-4 col-lg-3 mb-2">
+                                                    <div class="bg-white border rounded shadow-sm py-2 px-3 text-center mt-1">
+                                                        @skill.Name
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="other" role="tabpanel">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex gap-5 justify-content-between align-items-center">
+                                <h5 class="fs-5 fw-bold">@SharedLocalizer["Current professional level"]</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-5">
+                        @{
+                            var selectedLevels = applicantLevels.Where(us => us.IsSelected).ToList();
+
+                            if (selectedLevels != null && selectedLevels.Any())
+                            {
+                                foreach (var level in selectedLevels)
+                                {
+                                    <div class="col-md-4 col-sm-6 mb-2">
+                                        <div class="bg-white border rounded shadow-sm py-2 px-3 text-center">
+                                            <iconify-icon icon="mdi:stairs-up" class="text-primary mr-1"></iconify-icon> @level.Name
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-12 text-muted text-center">
+                                    <em>@SharedLocalizer["No levels available"]</em>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <div class="d-flex gap-5 justify-content-between align-items-center">
+                                <h5 class="fs-5 fw-bold">@SharedLocalizer["Province for work"]</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        @{
+                            var selectedProvinces = applicantProvinces.Where(us => us.isSelected).ToList();
+
+                            if (selectedProvinces != null && selectedProvinces.Any())
+                            {
+                                foreach (var province in selectedProvinces)
+                                {
+                                    <div class="col-md-4 col-sm-6 mb-2">
+                                        <div class="bg-white border rounded shadow-sm py-2 px-3 text-center">
+                                            <i class="fas fa-map-marker-alt text-primary mr-1"></i> @province.Name
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-12 text-muted text-center">
+                                    <em>@SharedLocalizer["No provinces available"]</em>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

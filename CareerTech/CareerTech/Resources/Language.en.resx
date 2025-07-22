@@ -1,0 +1,1197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1 - 2 years" xml:space="preserve">
+    <value>1 - 2 years</value>
+  </data>
+  <data name="1 year" xml:space="preserve">
+    <value>1 year</value>
+  </data>
+  <data name="10 – 24 employees" xml:space="preserve">
+    <value>10 – 24 employees</value>
+  </data>
+  <data name="2 - 3 years" xml:space="preserve">
+    <value>2 - 3 years</value>
+  </data>
+  <data name="200 – 499 employees" xml:space="preserve">
+    <value>200 – 499 employees</value>
+  </data>
+  <data name="25 – 49 employees" xml:space="preserve">
+    <value>25 – 49 employees</value>
+  </data>
+  <data name="3 - 5 years" xml:space="preserve">
+    <value>3 - 5 years</value>
+  </data>
+  <data name="50 – 199 employees" xml:space="preserve">
+    <value>50 – 199 employees</value>
+  </data>
+  <data name="500+ employees" xml:space="preserve">
+    <value>500+ employees</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Add Level" xml:space="preserve">
+    <value>Add Level</value>
+  </data>
+  <data name="Add Province" xml:space="preserve">
+    <value>Add Province</value>
+  </data>
+  <data name="Add Skill" xml:space="preserve">
+    <value>Add Skill</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Applicant" xml:space="preserve">
+    <value>Applicant</value>
+  </data>
+  <data name="Applied At" xml:space="preserve">
+    <value>Applied At</value>
+  </data>
+  <data name="Applied Job Posts" xml:space="preserve">
+    <value>Applied Job Posts</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Apply Again" xml:space="preserve">
+    <value>Apply Again</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Banned" xml:space="preserve">
+    <value>Banned</value>
+  </data>
+  <data name="Basic Information" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+  <data name="Benefit" xml:space="preserve">
+    <value>Benefit</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Chose File</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Company Page" xml:space="preserve">
+    <value>Company Page</value>
+  </data>
+  <data name="Company Size" xml:space="preserve">
+    <value>Company Size</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Copy Failed" xml:space="preserve">
+    <value>Copy failed</value>
+  </data>
+  <data name="Copy link" xml:space="preserve">
+    <value>Copy link</value>
+  </data>
+  <data name="Copy Successful" xml:space="preserve">
+    <value>Copy successful</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>Create an Account</value>
+  </data>
+  <data name="Create Jd" xml:space="preserve">
+    <value>Create Jd</value>
+  </data>
+  <data name="Created At" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="Creative and Media" xml:space="preserve">
+    <value>Creative and Media</value>
+  </data>
+  <data name="Currency Salary" xml:space="preserve">
+    <value>Currency Salary</value>
+  </data>
+  <data name="Current professional level" xml:space="preserve">
+    <value>Current professional level</value>
+  </data>
+  <data name="Customer Service and Tourism" xml:space="preserve">
+    <value>Customer Service and Tourism</value>
+  </data>
+  <data name="CvNotFound" xml:space="preserve">
+    <value>No CV available at the moment</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Deselect All" xml:space="preserve">
+    <value>Deselect All</value>
+  </data>
+  <data name="Didn't receive the code" xml:space="preserve">
+    <value>Didn't receive the code ?</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Education and Training" xml:space="preserve">
+    <value>Education and Training</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>EndDate</value>
+  </data>
+  <data name="Enter verfication code" xml:space="preserve">
+    <value>Enter verfication code</value>
+  </data>
+  <data name="errAdminInfoNotFound" xml:space="preserve">
+    <value>Admin Info Not Found</value>
+  </data>
+  <data name="errBenefitCannotBeEmpty" xml:space="preserve">
+    <value>Benefit cannot be empty</value>
+  </data>
+  <data name="errBirthdayInvalidFormat" xml:space="preserve">
+    <value>Birthday must be in the format yyyy/MM/dd</value>
+  </data>
+  <data name="errCodeIsIncorrect" xml:space="preserve">
+    <value>Mã không đúng</value>
+  </data>
+  <data name="errCompanySizeCannotBeEmpty" xml:space="preserve">
+    <value>Company size can not be empty</value>
+  </data>
+  <data name="errConfirmPasswordCannotBeEmpty" xml:space="preserve">
+    <value>Confirm Password cannot be empty</value>
+  </data>
+  <data name="errCurrencySalaryCannotBeEmpty" xml:space="preserve">
+    <value>Salary currency cannot be empty</value>
+  </data>
+  <data name="errDescriptionCannotBeEmpty" xml:space="preserve">
+    <value>Description cannot be empty</value>
+  </data>
+  <data name="errDomainCannotBeEmpty" xml:space="preserve">
+    <value>Domain cannot be empty</value>
+  </data>
+  <data name="errEmailAlreadyExits" xml:space="preserve">
+    <value>Email already exits</value>
+  </data>
+  <data name="errEmailNotExits" xml:space="preserve">
+    <value>Email Not Exist</value>
+  </data>
+  <data name="errEndDateCannotBeEmpty" xml:space="preserve">
+    <value>End date cannot be empty</value>
+  </data>
+  <data name="errExperienceYearCannotBeEmpty" xml:space="preserve">
+    <value>Years of experience cannot be empty</value>
+  </data>
+  <data name="errGenderCannotEmpty" xml:space="preserve">
+    <value>Gender cannot be empty</value>
+  </data>
+  <data name="errGeneric" xml:space="preserve">
+    <value>Generic Error</value>
+  </data>
+  <data name="errGroupDomainNotFound" xml:space="preserve">
+    <value>Group Domain Not Found</value>
+  </data>
+  <data name="errLevelCannotBeEmpty" xml:space="preserve">
+    <value>Level cannot be empty</value>
+  </data>
+  <data name="errMinSalaryCannotBeGreaterThanMaxSalary" xml:space="preserve">
+    <value>Minimum salary cannot be greater than maximum salary</value>
+  </data>
+  <data name="errMinSalaryorMaxSalaryCannotBeEmpty" xml:space="preserve">
+    <value>Minimum salary or maximum salary cannot be empty</value>
+  </data>
+  <data name="errNameCannotEmpty" xml:space="preserve">
+    <value>Name Cannot Empty</value>
+  </data>
+  <data name="errPasswordCannotBeEmpty" xml:space="preserve">
+    <value>Password cannot be empty</value>
+  </data>
+  <data name="errPasswordDoNotStrong" xml:space="preserve">
+    <value>Password do not strong</value>
+  </data>
+  <data name="errPasswordInvalid" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
+  <data name="errPasswordNotEqual" xml:space="preserve">
+    <value>Password and confirm password are not equal</value>
+  </data>
+  <data name="errProvinceCannotBeEmpty" xml:space="preserve">
+    <value>Province cannot be empty</value>
+  </data>
+  <data name="errQuantityCannotBeEmpty" xml:space="preserve">
+    <value>Quantity cannot be empty</value>
+  </data>
+  <data name="errRecordHasExpired" xml:space="preserve">
+    <value>Bản ghi hết hạn</value>
+  </data>
+  <data name="errRecruitmentInfoNotFound" xml:space="preserve">
+    <value>Recruitment Info Not Found</value>
+  </data>
+  <data name="errRequirementCannotBeEmpty" xml:space="preserve">
+    <value>Requirement cannot be empty</value>
+  </data>
+  <data name="errRoleMissMatch" xml:space="preserve">
+    <value>Role mismatch</value>
+  </data>
+  <data name="errStatusCannotBeEmpty" xml:space="preserve">
+    <value>Status cannot be empty</value>
+  </data>
+  <data name="errTitleCannotBeEmpty" xml:space="preserve">
+    <value>Title cannot be empty</value>
+  </data>
+  <data name="errUnsupportedRole" xml:space="preserve">
+    <value>Unsupported role</value>
+  </data>
+  <data name="errUpdateGroupDomainFailed" xml:space="preserve">
+    <value>Update Group Domain Failed</value>
+  </data>
+  <data name="errUserNoActive" xml:space="preserve">
+    <value>Account banned</value>
+  </data>
+  <data name="errUserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="errWorkingTypeCannotBeEmpty" xml:space="preserve">
+    <value>Working Type cannot be empty</value>
+  </data>
+  <data name="errWorkLocationCannotBeEmpty" xml:space="preserve">
+    <value>Work location cannot be empty</value>
+  </data>
+  <data name="errWorkScheduleCannotBeEmpty" xml:space="preserve">
+    <value>Work Schedule can not be empty</value>
+  </data>
+  <data name="Established Date" xml:space="preserve">
+    <value>Established Date</value>
+  </data>
+  <data name="Experience Year" xml:space="preserve">
+    <value>Experience Year</value>
+  </data>
+  <data name="Expiration Date" xml:space="preserve">
+    <value>Expiration Date</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="File CV" xml:space="preserve">
+    <value>File CV</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Finance and Accounting" xml:space="preserve">
+    <value>Finance and Accounting</value>
+  </data>
+  <data name="Fit Status" xml:space="preserve">
+    <value>Fit Status</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Forgot Password ?</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Go Back" xml:space="preserve">
+    <value>Go Back</value>
+  </data>
+  <data name="Group Domain" xml:space="preserve">
+    <value>Group Domain</value>
+  </data>
+  <data name="Healthcare" xml:space="preserve">
+    <value>Healthcare</value>
+  </data>
+  <data name="Human Resources" xml:space="preserve">
+    <value>Human Resources</value>
+  </data>
+  <data name="Hybrid" xml:space="preserve">
+    <value>Hybrid</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>InActive</value>
+  </data>
+  <data name="InappropriateContent" xml:space="preserve">
+    <value>Inappropriate Content</value>
+  </data>
+  <data name="IncompleteInformation" xml:space="preserve">
+    <value>Incomplete Information</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Information Technology and Software" xml:space="preserve">
+    <value>Information Technology and Software</value>
+  </data>
+  <data name="Jd Detail" xml:space="preserve">
+    <value>Jd Detail</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="Job Details" xml:space="preserve">
+    <value>Job Details</value>
+  </data>
+  <data name="Job Post List" xml:space="preserve">
+    <value>Job Post List</value>
+  </data>
+  <data name="jobs" xml:space="preserve">
+    <value>jobs</value>
+  </data>
+  <data name="JobStatusStatistic" xml:space="preserve">
+    <value>Job statistics by status</value>
+  </data>
+  <data name="Jost Post" xml:space="preserve">
+    <value>Job Post</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Link Web" xml:space="preserve">
+    <value>Link Web</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login Admin" xml:space="preserve">
+    <value>Login (Admin)</value>
+  </data>
+  <data name="Login Applicant" xml:space="preserve">
+    <value>Login (Applicant)</value>
+  </data>
+  <data name="Login Recruitment" xml:space="preserve">
+    <value>Login (Recruitment)</value>
+  </data>
+  <data name="Logistics and Supply Chain" xml:space="preserve">
+    <value>Logistics and Supply Chain</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Manufacturing and Engineering" xml:space="preserve">
+    <value>Manufacturing and Engineering</value>
+  </data>
+  <data name="Map Location" xml:space="preserve">
+    <value>Map Location</value>
+  </data>
+  <data name="Marketing and Communication" xml:space="preserve">
+    <value>Marketing and Communication</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Max Salary" xml:space="preserve">
+    <value>Max Salary</value>
+  </data>
+  <data name="Maximun" xml:space="preserve">
+    <value>Maximun</value>
+  </data>
+  <data name="Message Login" xml:space="preserve">
+    <value>Already have an account ? Login here.</value>
+  </data>
+  <data name="Message Logout" xml:space="preserve">
+    <value>Are you sure want to logout ?</value>
+  </data>
+  <data name="Message Register" xml:space="preserve">
+    <value>Don't have an account ? Register here.</value>
+  </data>
+  <data name="Message Unsave" xml:space="preserve">
+    <value>Are you sure you want to remove this job from your saved list?</value>
+  </data>
+  <data name="Min Salary" xml:space="preserve">
+    <value>Min Salary</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimun</value>
+  </data>
+  <data name="Monday - Friday" xml:space="preserve">
+    <value>Monday - Friday</value>
+  </data>
+  <data name="Monday - Saturday" xml:space="preserve">
+    <value>Monday - Saturday</value>
+  </data>
+  <data name="More than 5 years" xml:space="preserve">
+    <value>More than 5 years</value>
+  </data>
+  <data name="msgApplyJobFailed" xml:space="preserve">
+    <value>Failed to apply job</value>
+  </data>
+  <data name="msgApplyJobSuccess" xml:space="preserve">
+    <value>Apply job successfully</value>
+  </data>
+  <data name="msgCreateJdFailed" xml:space="preserve">
+    <value>Failed to create job post</value>
+  </data>
+  <data name="msgCreateJdSuccess" xml:space="preserve">
+    <value>Job post created successfully</value>
+  </data>
+  <data name="msgCreateJobPostApprovalFailed" xml:space="preserve">
+    <value>Failed to create approval status</value>
+  </data>
+  <data name="msgCreateJobPostApprovalSuccess" xml:space="preserve">
+    <value>Approval status created successfully</value>
+  </data>
+  <data name="msgDelete" xml:space="preserve">
+    <value>Are you sure want to delete it ?</value>
+  </data>
+  <data name="msgDeleteFileFailed" xml:space="preserve">
+    <value>Failed to delete file</value>
+  </data>
+  <data name="msgDeleteFileSuccess" xml:space="preserve">
+    <value>File deleted successfully</value>
+  </data>
+  <data name="msgDeleteJdFailed" xml:space="preserve">
+    <value>Failed to delete job posts</value>
+  </data>
+  <data name="msgDeleteJdSuccess" xml:space="preserve">
+    <value>Job post delete successly</value>
+  </data>
+  <data name="msgErrorSavingFile" xml:space="preserve">
+    <value>Saved file error</value>
+  </data>
+  <data name="msgJobPostNotFound" xml:space="preserve">
+    <value>Job post not found</value>
+  </data>
+  <data name="msgNofileSelected" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="msgUnsaveJobPostFailed" xml:space="preserve">
+    <value>An error occurred while removing the job from your saved jobs</value>
+  </data>
+  <data name="msgUpdateAdminFailed" xml:space="preserve">
+    <value>Update Admin Failed</value>
+  </data>
+  <data name="msgUpdateAdminSuccess" xml:space="preserve">
+    <value>Update Admin Success</value>
+  </data>
+  <data name="msgUpdateBasicInforFailed" xml:space="preserve">
+    <value>Failed to update basic information</value>
+  </data>
+  <data name="msgUpdateBasicInforSuccess" xml:space="preserve">
+    <value>Basic information updated successfully</value>
+  </data>
+  <data name="msgUpdateFitStatusFailed" xml:space="preserve">
+    <value>Failed to update fit status </value>
+  </data>
+  <data name="msgUpdateFitStatusSuccess" xml:space="preserve">
+    <value>Update fit status successfully</value>
+  </data>
+  <data name="msgUpdateGroupDomainSuccess" xml:space="preserve">
+    <value>Update Group Domain Success</value>
+  </data>
+  <data name="msgUpdateJdFailed" xml:space="preserve">
+    <value>Failed to update job post</value>
+  </data>
+  <data name="msgUpdateJdSuccess" xml:space="preserve">
+    <value>Job post updated successfully</value>
+  </data>
+  <data name="msgUpdateJobPostApprovalFailed" xml:space="preserve">
+    <value>Failed to updated approval status</value>
+  </data>
+  <data name="msgUpdateJobPostApprovalSuccess" xml:space="preserve">
+    <value>Approval status updated successfully</value>
+  </data>
+  <data name="msgUpdateLevelFailed" xml:space="preserve">
+    <value>Update level failed</value>
+  </data>
+  <data name="msgUpdateLevelSuccess" xml:space="preserve">
+    <value>Update level success</value>
+  </data>
+  <data name="msgUpdatePasswordFailed" xml:space="preserve">
+    <value>Update Password Failed</value>
+  </data>
+  <data name="msgUpdatePasswordSuccess" xml:space="preserve">
+    <value>Update Password Success</value>
+  </data>
+  <data name="msgUpdateProvinceFailed" xml:space="preserve">
+    <value>Update province failed</value>
+  </data>
+  <data name="msgUpdateProvinceSuccess" xml:space="preserve">
+    <value>Update province success</value>
+  </data>
+  <data name="msgUpdateRecruitmentFailed" xml:space="preserve">
+    <value>Update Recruitment Failed</value>
+  </data>
+  <data name="msgUpdateRecruitmentSuccess" xml:space="preserve">
+    <value>Update Recruitment Success</value>
+  </data>
+  <data name="msgUpdateSavedJobFailed" xml:space="preserve">
+    <value>An error occurred while updating the saved job posting</value>
+  </data>
+  <data name="msgUpdateSkillFailed" xml:space="preserve">
+    <value>Failed to update skill</value>
+  </data>
+  <data name="msgUpdateSkillSuccess" xml:space="preserve">
+    <value>Update skill successfully</value>
+  </data>
+  <data name="msgUpdateStatusFailed" xml:space="preserve">
+    <value>Failed to update status</value>
+  </data>
+  <data name="msgUpdateStatusSuccess" xml:space="preserve">
+    <value>Status updated successfully</value>
+  </data>
+  <data name="msgUploadFileSuccess" xml:space="preserve">
+    <value>Upload file success</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Negotiable" xml:space="preserve">
+    <value>Negotiable</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="No files available" xml:space="preserve">
+    <value>No files available</value>
+  </data>
+  <data name="No Job" xml:space="preserve">
+    <value>No jobs available at the moment</value>
+  </data>
+  <data name="No job applications" xml:space="preserve">
+    <value>No job applications found</value>
+  </data>
+  <data name="No levels available" xml:space="preserve">
+    <value>No levels available yet</value>
+  </data>
+  <data name="No provinces avaible" xml:space="preserve">
+    <value>No cities or provinces avaible yet</value>
+  </data>
+  <data name="No saved job" xml:space="preserve">
+    <value>You haven't saved any jobs yet</value>
+  </data>
+  <data name="NoApplicants" xml:space="preserve">
+    <value>There are currently no applicants</value>
+  </data>
+  <data name="NoFileChosen" xml:space="preserve">
+    <value>No File Chose</value>
+  </data>
+  <data name="NoRecruiters" xml:space="preserve">
+    <value>There are currently no recruiters</value>
+  </data>
+  <data name="Not required" xml:space="preserve">
+    <value>Not required</value>
+  </data>
+  <data name="NotMatch" xml:space="preserve">
+    <value>Not Match</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>Office</value>
+  </data>
+  <data name="Opening" xml:space="preserve">
+    <value>Opening</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Password Note" xml:space="preserve">
+    <value>Password must be at least 8 characters long, contain both uppercase and lowercase letters, a number, and a special character</value>
+  </data>
+  <data name="PendingApproval" xml:space="preserve">
+    <value>Pending Approval</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Post Status History" xml:space="preserve">
+    <value>Post Status History</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="Province for work" xml:space="preserve">
+    <value>Province for work</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Recruiter" xml:space="preserve">
+    <value>Recruiter</value>
+  </data>
+  <data name="Recruitment" xml:space="preserve">
+    <value>Recruitment</value>
+  </data>
+  <data name="Recruitment Management" xml:space="preserve">
+    <value>Recruitment Management</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Register Account" xml:space="preserve">
+    <value>Register Account</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Remember Login" xml:space="preserve">
+    <value>Remember Login</value>
+  </data>
+  <data name="Remote" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="Repeat Password" xml:space="preserve">
+    <value>Repeat Password</value>
+  </data>
+  <data name="Requirement" xml:space="preserve">
+    <value>Requirement</value>
+  </data>
+  <data name="Resend code" xml:space="preserve">
+    <value>Recend code</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="Sales and Business" xml:space="preserve">
+    <value>Sales and Business</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="Saved Job Posts" xml:space="preserve">
+    <value>Saved Job Posts</value>
+  </data>
+  <data name="Select All" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="Select Company Size" xml:space="preserve">
+    <value>Select Company Size</value>
+  </data>
+  <data name="Select Currency Salary" xml:space="preserve">
+    <value>Select Currency Salary</value>
+  </data>
+  <data name="Select Domain" xml:space="preserve">
+    <value>Select Domain</value>
+  </data>
+  <data name="Select Experience Year" xml:space="preserve">
+    <value>Select Experience Year</value>
+  </data>
+  <data name="Select file" xml:space="preserve">
+    <value>Select file</value>
+  </data>
+  <data name="Select Gender" xml:space="preserve">
+    <value>Select Gender</value>
+  </data>
+  <data name="Select Level" xml:space="preserve">
+    <value>Select Level</value>
+  </data>
+  <data name="Select Province" xml:space="preserve">
+    <value>Select Province</value>
+  </data>
+  <data name="Select Reason" xml:space="preserve">
+    <value>Select Reason</value>
+  </data>
+  <data name="Select Status" xml:space="preserve">
+    <value>Select Status</value>
+  </data>
+  <data name="Select uploaded CV" xml:space="preserve">
+    <value>Select uploaded CV</value>
+  </data>
+  <data name="Select Work Schedule" xml:space="preserve">
+    <value>Select Work Schedule</value>
+  </data>
+  <data name="Select Working Type" xml:space="preserve">
+    <value>Select Working Type</value>
+  </data>
+  <data name="Send verfication code" xml:space="preserve">
+    <value>Send verfication code</value>
+  </data>
+  <data name="Share on social media" xml:space="preserve">
+    <value>Share on social media</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Status Approval" xml:space="preserve">
+    <value>Status Approval</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Submitted</value>
+  </data>
+  <data name="SuspiciousActivity" xml:space="preserve">
+    <value>Suspicious Activity</value>
+  </data>
+  <data name="There are no job postings" xml:space="preserve">
+    <value>There are no job postings</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Top Recent Job Postings" xml:space="preserve">
+    <value>Top Recent Job Postings</value>
+  </data>
+  <data name="Top Recruiters" xml:space="preserve">
+    <value>Top Recruiters</value>
+  </data>
+  <data name="Unsave" xml:space="preserve">
+    <value>Unsave</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Upload from device" xml:space="preserve">
+    <value>Upload from device</value>
+  </data>
+  <data name="UserRoleStatistic" xml:space="preserve">
+    <value>User account statistics by role</value>
+  </data>
+  <data name="View Applicant" xml:space="preserve">
+    <value>View Applicant</value>
+  </data>
+  <data name="View CV" xml:space="preserve">
+    <value>View CV</value>
+  </data>
+  <data name="View Detail" xml:space="preserve">
+    <value>View Detail</value>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="View more" xml:space="preserve">
+    <value>View more</value>
+  </data>
+  <data name="Viewed" xml:space="preserve">
+    <value>Viewed</value>
+  </data>
+  <data name="ViolationOfPolicy" xml:space="preserve">
+    <value>Violation Of Policy</value>
+  </data>
+  <data name="Welcome Admin" xml:space="preserve">
+    <value>Welcome to the Admin Page</value>
+  </data>
+  <data name="Welcome Applicant" xml:space="preserve">
+    <value>Welcome to the Career Tech</value>
+  </data>
+  <data name="Welcome Recruitment" xml:space="preserve">
+    <value>Welcome to the Recruitment Page</value>
+  </data>
+  <data name="Work Location" xml:space="preserve">
+    <value>Work Location</value>
+  </data>
+  <data name="Work Schedule" xml:space="preserve">
+    <value>Work Schedule</value>
+  </data>
+  <data name="Working Hour" xml:space="preserve">
+    <value>Working Hour</value>
+  </data>
+  <data name="Working Type" xml:space="preserve">
+    <value>Working Type</value>
+  </data>
+  <data name="Fewer than 10 employees" xml:space="preserve">
+    <value>Fewer than 10 employees</value>
+  </data>
+  <data name="msgCodeSent" xml:space="preserve">
+    <value>A new code has been sent</value>
+  </data>
+  <data name="msgErrorRetry" xml:space="preserve">
+    <value>Something went wrong. Please try again</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Verify Status" xml:space="preserve">
+    <value>Verify Status</value>
+  </data>
+  <data name="Get data job post status approval (Admin view)" xml:space="preserve">
+    <value>Get data job post status approval (Admin view)</value>
+  </data>
+  <data name="Delete file CV" xml:space="preserve">
+    <value>Delete file CV</value>
+  </data>
+  <data name="Apply job" xml:space="preserve">
+    <value>Apply job</value>
+  </data>
+  <data name="Create job post" xml:space="preserve">
+    <value>Create job post</value>
+  </data>
+  <data name="Create job post status approval" xml:space="preserve">
+    <value>Create job post status approval</value>
+  </data>
+  <data name="Delete saved job" xml:space="preserve">
+    <value>Delete saved job</value>
+  </data>
+  <data name="Display applicants (Admin view)" xml:space="preserve">
+    <value>Display applicants (Admin view)</value>
+  </data>
+  <data name="Display applicants who applied for a job" xml:space="preserve">
+    <value>Display applicants who applied for a job</value>
+  </data>
+  <data name="Display dashboard of admin" xml:space="preserve">
+    <value>Display dashboard of admin</value>
+  </data>
+  <data name="Display dashboard of recruiter" xml:space="preserve">
+    <value>Display dashboard of recruiter</value>
+  </data>
+  <data name="Display detail admin" xml:space="preserve">
+    <value>Display detail admin</value>
+  </data>
+  <data name="Display detail applicant (Admin view)" xml:space="preserve">
+    <value>Display detail applicant (Admin view)</value>
+  </data>
+  <data name="Display detail recruiter (Admin view)" xml:space="preserve">
+    <value>Display detail recruiter (Admin view)</value>
+  </data>
+  <data name="Display job post (Admin view)" xml:space="preserve">
+    <value>Display job post (Admin view)</value>
+  </data>
+  <data name="Display job posts (Admin view)" xml:space="preserve">
+    <value>Display job posts (Admin view)</value>
+  </data>
+  <data name="Display job posts by recruiter" xml:space="preserve">
+    <value>Display job posts by recruiter</value>
+  </data>
+  <data name="Display recruiters (Admin view)" xml:space="preserve">
+    <value>Display recruiters (Admin view)</value>
+  </data>
+  <data name="Display the applied jobs of the applicant" xml:space="preserve">
+    <value>Display the applied jobs of the applicant</value>
+  </data>
+  <data name="Display the detail of applicant" xml:space="preserve">
+    <value>Display the detail of applicant</value>
+  </data>
+  <data name="Display the detail of job post of recruiter" xml:space="preserve">
+    <value>Display the detail of job post of recruiter</value>
+  </data>
+  <data name="Display the detail of recruiter" xml:space="preserve">
+    <value>Display the detail of recruiter</value>
+  </data>
+  <data name="Display the detail public applicant" xml:space="preserve">
+    <value>Display the detail public applicant</value>
+  </data>
+  <data name="Display the job post creation form" xml:space="preserve">
+    <value>Display the job post creation form</value>
+  </data>
+  <data name="Display the public applicants" xml:space="preserve">
+    <value>Display the public applicants</value>
+  </data>
+  <data name="Display the saved jobs of the applicant" xml:space="preserve">
+    <value>Display the saved jobs of the applicant</value>
+  </data>
+  <data name="Get data applicants (Admin view)" xml:space="preserve">
+    <value>Get data applicants (Admin view)</value>
+  </data>
+  <data name="Get data applicants who applied for a job" xml:space="preserve">
+    <value>Get data applicants who applied for a job</value>
+  </data>
+  <data name="Get data application job" xml:space="preserve">
+    <value>Get data application job</value>
+  </data>
+  <data name="Get data cv files of applicant" xml:space="preserve">
+    <value>Get data cv files of applicant</value>
+  </data>
+  <data name="Get data job posts (Admin view)" xml:space="preserve">
+    <value>Get data job posts (Admin view)</value>
+  </data>
+  <data name="Get data job posts of recruiter" xml:space="preserve">
+    <value>Get data job posts of recruiter</value>
+  </data>
+  <data name="Get data levels of applicant" xml:space="preserve">
+    <value>Get data levels of applicant</value>
+  </data>
+  <data name="Get data perferred provinces" xml:space="preserve">
+    <value>Get data perferred provinces</value>
+  </data>
+  <data name="Get data public applicants" xml:space="preserve">
+    <value>Get data public applicants</value>
+  </data>
+  <data name="Get data recruiters (Admin view)" xml:space="preserve">
+    <value>Get data recruiters (Admin view)</value>
+  </data>
+  <data name="Get data skills of applicant" xml:space="preserve">
+    <value>Get data skills of applicant</value>
+  </data>
+  <data name="Get data user status" xml:space="preserve">
+    <value>Get data user status</value>
+  </data>
+  <data name="Save job" xml:space="preserve">
+    <value>Save job</value>
+  </data>
+  <data name="Update  domains of recruiter" xml:space="preserve">
+    <value>Update  domains of recruiter</value>
+  </data>
+  <data name="Update basic info of admin" xml:space="preserve">
+    <value>Update basic info of admin</value>
+  </data>
+  <data name="Update basic info of applicant" xml:space="preserve">
+    <value>Update basic info of applicant</value>
+  </data>
+  <data name="Update basic info of recruiter" xml:space="preserve">
+    <value>Update basic info of recruiter</value>
+  </data>
+  <data name="Update fit status application job" xml:space="preserve">
+    <value>Update fit status application job</value>
+  </data>
+  <data name="Update job post" xml:space="preserve">
+    <value>Update job post</value>
+  </data>
+  <data name="Update job post status approval" xml:space="preserve">
+    <value>Update job post status approval</value>
+  </data>
+  <data name="Update levels of applicant" xml:space="preserve">
+    <value>Update levels of applicant</value>
+  </data>
+  <data name="Update provinces of applicant" xml:space="preserve">
+    <value>Update provinces of applicant</value>
+  </data>
+  <data name="Update skills of applicant" xml:space="preserve">
+    <value>Update skills of applicant</value>
+  </data>
+  <data name="Update user status" xml:space="preserve">
+    <value>Update user status</value>
+  </data>
+  <data name="Upload file CV" xml:space="preserve">
+    <value>Upload file CV</value>
+  </data>
+  <data name="Upload image" xml:space="preserve">
+    <value>Upload image</value>
+  </data>
+  <data name="Access Control" xml:space="preserve">
+    <value>Access Control</value>
+  </data>
+  <data name="Display detail role (Admin view)" xml:space="preserve">
+    <value>Display detail role (Admin view)</value>
+  </data>
+  <data name="Display roles (Admin view)" xml:space="preserve">
+    <value>Display roles (Admin view)</value>
+  </data>
+  <data name="errorMessageAccessDenied403" xml:space="preserve">
+    <value>Sorry, your access is refused due to security reasons of our server and also our sensitive data.</value>
+  </data>
+  <data name="errorMessageLoadingFailed" xml:space="preserve">
+    <value>Unfortunately we're having trouble loading the page you are looking for.</value>
+  </data>
+  <data name="errorSuggestionReturnLate" xml:space="preserve">
+    <value>Please come back in a while.</value>
+  </data>
+  <data name="errorTitle403" xml:space="preserve">
+    <value>OPPSSS!!!! Sorry...</value>
+  </data>
+  <data name="errorTitleInternal500" xml:space="preserve">
+    <value>Opps! Internal Server Error!</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Feature</value>
+  </data>
+  <data name="Get data roles(Admin view)" xml:space="preserve">
+    <value>Get data roles(Admin view)</value>
+  </data>
+  <data name="Go Home" xml:space="preserve">
+    <value>Go Home</value>
+  </data>
+  <data name="Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="msgUpdateRolePermissionFailed" xml:space="preserve">
+    <value>Failed to update role permissions</value>
+  </data>
+  <data name="msgUpdateRolePermissionSuccess" xml:space="preserve">
+    <value>Role permissions updated successfully</value>
+  </data>
+  <data name="No Role Found" xml:space="preserve">
+    <value>No Role Found</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Role Permission" xml:space="preserve">
+    <value>Role Permission</value>
+  </data>
+  <data name="Update role permissions (Admin view)" xml:space="preserve">
+    <value>Update role permissions (Admin view)</value>
+  </data>
+  <data name="User Role" xml:space="preserve">
+    <value>User Role</value>
+  </data>
+  <data name="Newest blog" xml:space="preserve">
+    <value>Newest blog</value>
+  </data>
+</root>

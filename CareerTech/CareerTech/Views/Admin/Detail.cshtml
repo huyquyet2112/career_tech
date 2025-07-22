@@ -1,0 +1,101 @@
+﻿@model AdminDetail
+@{
+    Layout = "_LayoutAdmin";
+    var adminDetail = Model;
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-2">
+    <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-4" type="button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> @SharedLocalizer["Go Back"]
+    </button>
+</div>
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">@SharedLocalizer["Basic Information"]</h5>
+        </div>
+        <div class="card-body">
+            <form id="formUpdateDetailAdmin" data-userid="@adminDetail?.UserId">
+                <div class="row mb-3 justify-content-end">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary editButton">
+                            <span class="d-flex align-items-center justify-content-center">
+                                <iconify-icon icon="bxs:edit"></iconify-icon>
+                                <span class="ml-2">@SharedLocalizer["Edit"]</span>
+                            </span>
+                        </button>
+
+                        <div class="d-flex justify-content-between mt-2">
+                            <button type="submit" class="btn btn-success d-none saveButton">
+                                <span class="d-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="mingcute:save-fill"></iconify-icon>
+                                    <span class="ml-2">@SharedLocalizer["Save"]</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-secondary d-none cancelButton ml-2">
+                                <span class="d-flex align-items-center justify-content-center">
+                                    <iconify-icon icon="mdi:cancel-bold"></iconify-icon>
+                                    <span class="ml-2">@SharedLocalizer["Cancel"]</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="bg-light rounded-circle avatar-container custom-avatar-detail mx-auto" id="imageAvatar">
+                            @if (adminDetail?.Avatar != default)
+                            {
+                                <img src="@adminDetail?.Avatar" class="rounded-circle img-fluid w-100 h-100 image-custom image-custom" />
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync(ViewMapping.ViewDefaultAvatar)
+                            }
+                        </div>
+
+                        <input class="remove-disabled mt-2 w-auto d-inline-block mx-auto" type="file" id="formUploadAvatar" accept=".jpg,.jpeg,.png,.jfif" disabled />
+
+                        <input type="hidden" name="avatar" value="@adminDetail?.Avatar" id="imageAvatarInput" />
+                        <input type="hidden" name="oldAvatar" value="@adminDetail?.Avatar" />
+
+                        <button class="btn btn-primary btn-sm d-none mt-2" id="uploadImageAvatar" type="button" data-type-folder="@EFolder.AdminFolder">
+                            <span class="loading" role="status" aria-hidden="true"></span>
+                            Upload
+                        </button>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label font-weight-bold">
+                                @SharedLocalizer["Code"]
+                            </label>
+                            <div class="col-sm-7 d-flex align-items-center">
+                                <p class="mb-0 text-dark font-weight-normal">
+                                    @adminDetail?.AdminCode
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label font-weight-bold">
+                                @SharedLocalizer["Name"]
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text"
+                                       class="form-control remove-readonly"
+                                       name="name"
+                                       value="@adminDetail?.Name"
+                                       readonly />
+                                <span class="text-danger error-message d-none small mt-1 d-block" id="nameError"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>     
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="/js/admin-detail.js"></script>
+}

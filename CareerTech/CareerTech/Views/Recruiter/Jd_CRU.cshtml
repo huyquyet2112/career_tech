@@ -1,0 +1,348 @@
+﻿@model RecruitmentJdViewResponseDto
+@{
+    Layout = "_LayoutRecruiter";
+    var user = new UserInfo(this.Context.User);
+    var jdPost = Model.JdPost;
+    var groupSkills = ViewData["jdSkill"] != null ? ViewData["jdSkill"] as List<JdGroupSkillResponseDto> : [];
+    var jdLevels = ViewData["jdLevel"] != null ? ViewData["jdLevel"] as List<LevelResponseDto> : [];
+    var jdProvinces = ViewData["jdProvince"] != null ? ViewData["jdProvince"] as List<ProvinceResponseDto> : [];
+    var domains = ViewData["domains"] != null ? ViewData["domains"] as List<Domain> : [];
+    var listGroupDomains = domains?.GroupBy(us => us?.GroupDomain?.Name);
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-2">
+    <div class="d-flex justify-content-center">
+        @{
+            switch (Model.Mode)
+            {
+                case EModeView.Create:
+                    <h1 class="h5 mt-1">@SharedLocalizer["Create Jd"]</h1>
+                    break;
+                case EModeView.Detail:
+                    <h1 class="h5 mt-1">@SharedLocalizer["Jd Detail"]</h1>
+                    break;
+            }
+        }
+    </div>
+    <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-4" type="button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> @SharedLocalizer["Go Back"]
+    </button>
+</div>
+
+<form id="formCRUJdPost">
+    <div class="card shadow mb-4 w-75 mx-auto">
+        <div class="card-body">
+            <input type="hidden" name="userId" value="@user?.Id" />
+            <input type="hidden" name="jdPostId" value="@jdPost?.Id" />
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="title" class="form-label">@SharedLocalizer["Title"]</label>
+                    <textarea name="title" id="title" class="form-control" rows="3">@jdPost?.Title</textarea>
+                    <span class="text-danger error-message d-none" id="title-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="domainId" class="form-lable">@SharedLocalizer["Domain"]</label>
+                    <select name="domainId" class="selectpicker form-control" data-live-search="true" id="domainId">
+                        <option value="-1">@SharedLocalizer["Select Domain"]</option>
+                        @{
+                            if (listGroupDomains != null)
+                            {
+                                foreach (var groupDomain in listGroupDomains)
+                                {
+                                    <optgroup label="@groupDomain.Key">
+                                        @{
+                                            foreach (var domain in groupDomain)
+                                            {
+                                                if (jdPost?.DomainId == domain.Id)
+                                                {
+                                                    <option selected value="@domain.Id">@domain.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@domain.Id">@domain.Name</option>
+                                                }
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="domain-error"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="levels" class="form-label">@SharedLocalizer["Level"]</label>
+                    <select name="levels" id="levels" class="selectpicker form-control" data-live-search="true"
+                            data-actions-box="true" multiple data-selected-text-format="count > 3">
+                        @if (jdLevels != null)
+                        {
+                            foreach (var level in jdLevels)
+                            {
+                                if (level.IsSelected == true)
+                                {
+                                    <option selected value="@level.Id">@level.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@level.Id">@level.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="level-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="workingType" class="form-label">@SharedLocalizer["Working Type"]</label>
+                    <select name="workingType" id="workingType" class="selectpicker form-control" data-live-search="true">
+                        <option value="-1">@SharedLocalizer["Select Working Type"]</option>
+                        @foreach (EWorkingType workingType in Enum.GetValues(typeof(EWorkingType)))
+                        {
+                            if (workingType == jdPost?.WorkingType)
+                            {
+                                <option selected value="@workingType">@SharedLocalizer[$"{workingType}"]</option>
+                            }
+                            else
+                            {
+                                <option value="@workingType">@SharedLocalizer[$"{workingType}"]</option>
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="workingType-error"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="provinces" class="form-label">@SharedLocalizer["Province"]</label>
+                    <select name="provinces" id="provinces" class="selectpicker form-control" data-live-search="true"
+                            data-actions-box="true" multiple data-selected-text-format="count > 3">
+                        @if (jdProvinces != null)
+                        {
+                            foreach (var province in jdProvinces)
+                            {
+                                if (province.isSelected == true)
+                                {
+                                    <option selected value="@province.Id">@province.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@province.Id">@province.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="province-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="skills" class="form-label">@SharedLocalizer["Skill"]</label>
+                    <select name="skills" id="skills" class="selectpicker form-control" data-live-search="true"
+                            data-actions-box="true" multiple data-selected-text-format="count > 3">
+                        @if (groupSkills != null)
+                        {
+                            foreach (var groupSkill in groupSkills)
+                            {
+                                <optgroup label="@groupSkill.Name">
+                                    @{
+                                        foreach (var skill in groupSkill.Skills)
+                                        {
+                                            if (skill.IsSelected == true)
+                                            {
+                                                <option value="@skill.Id" selected>@skill.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@skill.Id">@skill.Name</option>
+                                            }
+                                        }
+                                    }
+                                </optgroup>
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="skills-error"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="status" class="form-lable">@SharedLocalizer["Status"]</label>
+                    <select name="status" id="status" class="selectpicker form-control" data-live-search="true">
+                        <option value="-1">@SharedLocalizer["Select Status"]</option>
+                        @{
+                            foreach (EJdPostStatus status in Enum.GetValues(typeof(EJdPostStatus)))
+                            {
+                                if (jdPost?.Status == status)
+                                {
+                                    <option value="@status" selected>@SharedLocalizer[$"{status}"]</option>
+                                }
+                                else
+                                {
+                                    <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="status-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="minSalary" class="form-label">@SharedLocalizer["Min Salary"]</label>
+                    <input name="minSalary" id="minSalary" class="form-control" value="@jdPost?.MinSalary" />
+                </div>
+                <div class="col-md-6">
+                    <label for="maxSalary" class="form-label">@SharedLocalizer["Max Salary"]</label>
+                    <input name="maxSalary" id="maxSalary" class="form-control" value="@jdPost?.MaxSalary" />
+                </div>
+                <span class="text-danger error-message d-none" id="salary-error"></span>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="currencySalary" class="form-label">@SharedLocalizer["Currency Salary"]</label>
+                    <select name="currencySalary" id="currencySalary" class="selectpicker form-control" data-live-search="true">
+                        <option value="-1">@SharedLocalizer["Select Currency Salary"]</option>
+                        @{
+                            foreach (ECurrencySalary currency in Enum.GetValues(typeof(ECurrencySalary)))
+                            {
+                                if (jdPost?.CurrencySalary == currency)
+                                {
+                                    <option selected value="@currency">@currency</option>
+                                }
+                                else
+                                {
+                                    <option value="@currency">@currency</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="currencySalary-error"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate" class="form-label">@SharedLocalizer["End Date"]</label>
+                    <div class="input-group">
+                        <input type="text" name="endDate" id="endDate" class="form-control date-picker" value="@jdPost?.EndDate?.ToString("yyyy/MM/dd")" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary date-picker-btn" type="button">
+                                <i class="fas fa-calendar-alt"></i>
+                            </button>
+                        </div>
+                    </div>                  
+                    <span class="text-danger error-message d-none" id="endDate-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <label for="quantity" class="form-label">@SharedLocalizer["Quantity"]</label>
+                    <input name="quantity" id="quantity" class="form-control" value="@jdPost?.Quantity" />
+                    <span class="text-danger error-message d-none" id="quantity-error"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="experienceYear" class="form-label">@SharedLocalizer["Experience Year"]</label>
+                    <select name="experienceYear" class="selectpicker form-control" data-live-search="true">
+                        <option value="-1">@SharedLocalizer["Select Experience Year"]</option>
+                        @{
+                            foreach (EExperienceYear experienceYear in Enum.GetValues(typeof(EExperienceYear)))
+                            {
+                                var convertExperienceYear = experienceYear.ConvertExperienceLevel();
+                                if (experienceYear == jdPost?.ExperienceYear)
+                                {
+                                    <option selected value="@experienceYear">@SharedLocalizer[$"{convertExperienceYear}"]</option>
+                                }
+                                else
+                                {
+                                    <option value="@experienceYear">@SharedLocalizer[$"{convertExperienceYear}"]</option>
+                                }
+                            }
+                        }
+                    </select>
+                    <span class="text-danger error-message d-none" id="experienceYear-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="description" class="form-label">@SharedLocalizer["Description"]</label>
+                    <textarea name="description" id="description" class="form-control">@jdPost?.Description</textarea>
+                    <span class="text-danger error-message d-none" id="description-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="requirement" class="form-label">@SharedLocalizer["Requirement"]</label>
+                    <textarea name="requirement" id="requirement" class="form-control">@jdPost?.Requirement</textarea>
+                    <span class="text-danger error-message d-none" id="requirement-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="benefit" class="form-label">@SharedLocalizer["Benefit"]</label>
+                    <textarea name="benefit" id="benefit" class="form-control">@jdPost?.Benefits</textarea>
+                    <span class="text-danger error-message d-none" id="benefit-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="workLocation" class="form-label">@SharedLocalizer["Work Location"]</label>
+                    <textarea name="workLocation" id="workLocation" class="form-control">@jdPost?.WorkLocation</textarea>
+                    <span class="text-danger error-message d-none" id="workLocation-error"></span>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12">
+                    <label for="workingHour" class="form-label">@SharedLocalizer["Working Hour"]</label>
+                    <textarea name="workingHour" id="workingHour" class="form-control">@jdPost?.WorkingHours</textarea>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button type="button" id="cancel" class="btn btn-secondary mr-2" onclick="window.history.back()">
+                        @SharedLocalizer["Cancel"]
+                    </button>
+                    @{
+                        switch (Model.Mode)
+                        {
+                            case EModeView.Create:
+                                <button type="button" class="btn btn-primary" id="submitCreate">
+                                    @SharedLocalizer["Save"]
+                                </button>
+                                break;
+                            case EModeView.Detail:
+                                <button type="button" class="btn btn-primary" id="submitUpdate">
+                                    @SharedLocalizer["Save"]
+                                </button>
+                                break;
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        const editorIds = [
+            'description',
+            'requirement',
+            'benefit',
+            'workLocation',
+            'workingHour'
+        ];
+
+        const editorDatas = {};
+
+        editorIds.forEach(id => {
+            const textarea = document.querySelector(`#${id}`);
+            if (textarea) {
+                ClassicEditor
+                    .create(textarea)
+                    .then(editor => {
+                        editorDatas[id] = editor;
+                    })
+                    .catch(error => {
+                        console.error(`Error initializing CKEditor for #${id}:`, error);
+                    });
+            }
+        });
+    </script>
+    <script src="/js/recruiter-cru-jd.js"></script>
+}

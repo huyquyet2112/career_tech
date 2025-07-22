@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped custom-datatable" id="adminRoleTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">@SharedLocalizer["Name"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Description"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Action"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/admin-role-index.js"></script>
+    <script>
+        var stringAdminRoleLocalized = {
+            NoRole : '@SharedLocalizer["No Role Found"]'
+        }
+    </script>
+}

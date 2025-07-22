@@ -1,0 +1,129 @@
+﻿@model Role
+@{
+    Layout = "_LayoutAdmin";
+    var role = Model;
+    var rolePermissions = ViewData["rolePermissions"] != null ? ViewData["rolePermissions"] as List<RolePermissionResponseDto> : [];
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-2">
+    <div class="d-flex justify-content-center">
+        <h1 class="h5 mt-1">@SharedLocalizer["Role Permission"]</h1>
+    </div>
+    <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-2" type="button" onclick="window.history.back()">
+        <i class="bi bi-arrow-left"></i> @SharedLocalizer["Go Back"]
+    </button>
+</div>
+<div class="container">
+    <div class="card shadow">
+        <div class="card-body">
+            <form id="formUpdateRolePermissions" data-roleid="@role?.Id">
+                <div class="row mb-3 gap-5 d-flex align-items-center">
+                    <div class="col d-flex justify-content-end">
+                        <div class="row mb-3 gap-5 d-flex align-items-center">
+                            <div class="col d-flex justify-content-end">
+                                <button type="button" class="btn btn-primary editButton">
+                                    <span class="d-flex align-items-center justify-content-center">
+                                        <iconify-icon icon="bxs:edit"></iconify-icon>
+                                        <span class="ml-2">@SharedLocalizer["Edit"]</span>
+                                    </span>
+                                </button>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <button type="submit" class="btn btn-success d-none saveButton">
+                                        <span class="d-flex align-items-center justify-content-center">
+                                            <iconify-icon icon="mingcute:save-fill"></iconify-icon>
+                                            <span class="ml-2">@SharedLocalizer["Save Change"]</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-secondary d-none cancelButton ml-2">
+                                        <span class="d-flex align-items-center justify-content-center">
+                                            <iconify-icon icon="mdi:cancel-bold"></iconify-icon>
+                                            <span class="ml-2">@SharedLocalizer["Cancel"]</span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <button type="button" class="btn-no-background button-select-btn remove-disabled selectAll" disabled>@SharedLocalizer["Select All"]</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn-no-background button-deselect-btn remove-disabled deselectAll" disabled>@SharedLocalizer["Deselect All"]</button>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @if (rolePermissions != null)
+                    {
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="controller">Controller</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="url" class="form-label">URL</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="uri" class="form-label ml-3">@SharedLocalizer["Feature"]</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="method" class="form-label">@SharedLocalizer["Method"]</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            @{
+                                int valController = 1;
+                            }
+                            @foreach (var controllerGroup in rolePermissions
+                                                    .GroupBy(x => x.Controller.StartsWith("Api") ? x.Controller.Substring(3) : x.Controller))
+                            {
+                                <div class="row rowRolePermission border-0 mb-3">
+                                    <div class="col-md-2">
+                                        <input type="checkbox" class="remove-disabled groupController" value="@valController"
+                                               @(controllerGroup.All(x => x.IsSelected) ? "checked" : "") disabled />
+                                        <strong>@controllerGroup.Key</strong>
+                                    </div>
+                                    <div class="col-md-10">
+                                        @foreach (var uriGroup in controllerGroup.GroupBy(x => x.Url))
+                                        {
+                                            <div class="row mb-3 border-top">
+                                                <div class="col-md-5">
+                                                    <strong>@uriGroup.Key</strong>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @foreach (var rolePermission in uriGroup)
+                                                    {
+                                                        <div class="row mb-1">
+                                                            <div class="col-md-8">
+                                                                <strong>@SharedLocalizer[$"{@rolePermission.Name}"]</strong>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <strong>@rolePermission.Method</strong>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <input type="checkbox" name="selectedMethod"
+                                                                       value="@rolePermission.Id"
+                                                                       class="remove-disabled permission"
+                                                                       @(rolePermission.IsSelected ? "checked" : "") disabled />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                valController++;
+                            }
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/admin-role-detail.js"></script>
+}

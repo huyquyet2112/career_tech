@@ -1,0 +1,198 @@
+﻿@{
+    Layout = null;
+    var language = Context.Request.Cookies["lang"] ?? "en";
+    var languages = AppSettingProvider.AppSettings.LanguageSupports;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@SharedLocalizer["Register Admin"]</title>
+
+    <link href="~/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/public/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/css/bootstrap-select.min.css" />
+</head>
+<body class="bg-gradient-primary body-login">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="/">Career Tech</a>
+                <div>
+                    <select class="selectpicker form-control" onchange="changeLanguage(this)">
+                        @{
+                            foreach (var item in languages)
+                            {
+                                if (language == item.Code)
+                                {
+                                        <option value="@item.Code" selected
+                                                data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'>@item.Name</span>">
+                                            @item.Name
+                                        </option>
+                                }
+                                else
+                                {
+                                        <option value="@item.Code"
+                                                data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'>@item.Name</span>">
+                                            @item.Name
+                                        </option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div style="margin-top: 112px;"></div>
+
+    <div class="container mt-4">
+        <div class="position-fixed p-3 top-md-20 end-0" id="toastPlacementNotification" style="z-index: 1090"></div>
+        <div class="row" id="notificationAlert">
+            @{
+                if (ViewBag.error != null && ViewBag.error != "")
+                {
+                        <div class="col">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                @ViewBag.error
+                            </div>
+                        </div>
+                }
+            }
+            @{
+                if (ViewBag.success != null && ViewBag.success != "")
+                {
+                        <div class="col mb-3">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                @ViewBag.success
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center mb-4">
+                                        <h1 class="h4 text-gray-900">@SharedLocalizer["Create an Account"]</h1>
+                                    </div>
+                                    <form class="user" id="registerForm" method="POST" action="/register">
+                                        <div class="form-group">
+                                            <select name="role" id="role" class="selectpicker form-control" data-live-search="true">
+                                                @foreach (EUserRole role in Enum.GetValues(typeof(EUserRole)))
+                                                {                                                
+                                                    if(role != EUserRole.Admin)
+                                                    {
+                                                        <option value="@role">@SharedLocalizer[$"{role}"]</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control form-control-user" id="name"
+                                                   placeholder="@SharedLocalizer["Name"]" />
+                                            <div id="nameError" class="text-danger small mt-1"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" name="userName" class="form-control form-control-user" id="userName"
+                                                   placeholder="@SharedLocalizer["Email"]" />
+                                            <div id="userNameError" class="text-danger small mt-1"></div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <div class="input-group">
+                                                    <input type="password" name="password" class="form-control form-control-user"
+                                                           placeholder="@SharedLocalizer["Password"]" id="password" />
+                                                    <span class="input-group-text" style="border-left: none; border-radius: 0 0.25rem 0.25rem 0">
+                                                        <i class="password fas fa-eye" data-input="password"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <div class="input-group">
+                                                    <input type="password" name="confirmPassword" class="form-control form-control-user"
+                                                           placeholder="@SharedLocalizer["Repeat Password"]" id="confirmPassword" />
+                                                    <span class="input-group-text">
+                                                        <i class="password fas fa-eye" data-input="confirmPassword"></i>
+                                                    </span>
+                                                </div>                                             
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            @SharedLocalizer["Register Account"]
+                                        </button>
+
+                                        <div class="text-center mt-2">
+                                            <a class="small text-secondary" href="/login">
+                                                @SharedLocalizer["Message Login"]
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-absolute p-3" id="toastPlacementNotification"></div>
+
+    <footer class="border-top footer text-muted text-center bg-white">
+        <div class="container">
+            &copy; @DateTime.Now.Year.ToString() - Career Tech
+        </div>
+    </footer>
+
+    <script src="~/public/vendor/jquery/jquery.min.js"></script>
+    <script src="~/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/public/js/sb-admin-2.min.js"></script>
+    <script src="~/js/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script>
+        var form = document.getElementById('registerForm');
+        var role = document.getElementById('role');
+        var nameField = document.getElementById('name');
+        var userNameField = document.getElementById('userName');
+        var passwordFeild = document.getElementById('password');
+        var confirmPasswordField = document.getElementById('confirmPassword');
+
+        form.addEventListener('submit', function (event) {
+            form.submit();
+        });
+    </script>
+    <script>
+        $('.password').click(function () {
+            const inputId = $(this).attr('data-input');
+            const typeInput = $(`#${inputId}`).attr('type');
+            if (typeInput == 'password') {
+                $(`#${inputId}`).attr('type', 'text');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            } else {
+                $(`#${inputId}`).attr('type', 'password');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿@model ViewApplicationJobPostDto
+@{
+    Layout = "_Layout";
+    var applicationJobPost = Model.ApplicationJobPost;
+    var pagination = Model.Pagination;
+    var page = pagination == null ? 1 : pagination.Page;
+    var totalPage = pagination == null ? 1 : pagination.TotalPage;
+    var totalRecrod = pagination == null ? 1 : pagination.TotalRecord;
+}
+
+<div class="container">
+    <div class="card-body">
+        <h4>@SharedLocalizer["Applied Job Posts"]</h4>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card-body">
+        @if (applicationJobPost == null || !applicationJobPost.Any())
+        {
+            <h5 class="text-muted">@SharedLocalizer["No job applications"]</h5>
+        }
+        else
+        {
+            foreach (var appliedJob in applicationJobPost)
+            {
+                <div class="card mb-3 p-3 shadow-sm">
+                    <div class="media">
+                        <div class="mr-3">
+                            @if (appliedJob.RecruiterAvatar != null)
+                            {
+                                <img src="@appliedJob.RecruiterAvatar" class="avatar-lg mr-3" alt="Logo"/>
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync(ViewMapping.ViewDefaultCompany)
+                            }
+                        </div>
+
+                        <div class="media-body">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                <h5 class="mb-1 text-success font-weight-bold">@appliedJob.Title</h5>
+                                <p class="mb-1 text-success font-weight-bold">
+                                    @{
+                                        string salaryText = "";
+
+                                        if (appliedJob.MinSalary.HasValue && !appliedJob.MaxSalary.HasValue)
+                                        {
+                                            salaryText = $"{SharedLocalizer["Minimum"].Value}: {appliedJob.MinSalary} {appliedJob.CurrencySalary}";
+                                        }
+                                        else if (!appliedJob.MinSalary.HasValue && appliedJob.MaxSalary.HasValue)
+                                        {
+                                            salaryText = $"{SharedLocalizer["Maximum"].Value}: {appliedJob.MaxSalary} {appliedJob.CurrencySalary}";
+                                        }
+                                        else if (appliedJob.MinSalary.HasValue && appliedJob.MaxSalary.HasValue)
+                                        {
+                                            salaryText = $"{appliedJob.MinSalary} - {appliedJob.MaxSalary} {appliedJob.CurrencySalary}";
+                                        }
+
+                                        if (!string.IsNullOrEmpty(salaryText))
+                                        {
+                                            <span class="mb-0 text-success font-weight-bold job-title">@salaryText</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="mb-0 text-success font-weight-bold job-title">@SharedLocalizer["Negotiable"]</span>
+                                        }
+                                    }
+                                </p>
+                            </div>
+
+                            <p class="text-muted mb-1 font-weight-bold">@appliedJob.RecruiterName</p>
+
+                            <div class="d-flex justify-content-between align-items-center mb-1 flex-wrap">
+                                <p class="mb-0 text-secondary small">
+                                    @SharedLocalizer["Applied At"]: @appliedJob.AppliedAt.ToString("yyyy-MM-dd HH:mm")
+                                </p>
+                                <a href="#" onclick="openPDF('@appliedJob.UrlFile'); return false;" class="text-primary small ml-2" title="Xem CV">
+                                    <i class="fas fa-eye"></i> @SharedLocalizer["View CV"]
+                                </a>
+                            </div>
+
+                            <div class="text-muted small mt-1">
+                                @if (appliedJob.FitStatus != null && appliedJob.ReviewedAt != null)
+                                {
+                                    <p class="mb-0">
+                                        @SharedLocalizer["Status"]: @SharedLocalizer[$"{appliedJob.FitStatus}"] (@appliedJob.ReviewedAt?.ToString("yyyy-MM-dd HH:mm"))
+                                    </p>
+                                }
+                                else if (appliedJob.ViewedAt == null && appliedJob.FitStatus == null && appliedJob.ReviewedAt == null)
+                                {
+                                    <p class="mb-0">
+                                        @SharedLocalizer["Status"]: @SharedLocalizer[$"{appliedJob.Status}"] (@appliedJob.AppliedAt.ToString("yyyy-MM-dd HH:mm"))
+                                    </p>
+                                }
+                                else if (appliedJob.ViewedAt != null && appliedJob.FitStatus == null && appliedJob.ReviewedAt == null)
+                                {
+                                    <p class="mb-0">
+                                        @SharedLocalizer["Status"]: @SharedLocalizer[$"{appliedJob.Status}"] (@appliedJob.ViewedAt?.ToString("yyyy-MM-dd HH:mm"))
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="d-flex justify-content-end mt-4">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item @(page == 1 ? "disabled" : "")">
+                        <a class="page-link pagination-user" data-page="@(page == 1 ? page : page - 1)" href="javascript:void(0)">
+                            &laquo;
+                        </a>
+                    </li>
+
+                    @if (page > 3)
+                    {
+                        <li class="page-item"><a class="page-link pagination-user" data-page="1" href="javascript:void(0)">1</a></li>
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    }
+
+                    @for (int i = Math.Max(1, page - 2); i <= Math.Min(totalPage, page + 2); i++)
+                    {
+                        <li class="page-item @(i == page ? "active" : "")">
+                            <a class="page-link @(i != page ? "pagination-user" : "")" data-page="@i" href="javascript:void(0)">@i</a>
+                        </li>
+                    }
+
+                    @if (page < totalPage - 2)
+                    {
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                        <li class="page-item"><a class="page-link pagination-user" data-page="@totalPage" href="javascript:void(0)">@totalPage</a></li>
+                    }
+
+                    <li class="page-item @(page == totalPage ? "disabled" : "")">
+                        <a class="page-link pagination-user" data-page="@(page == totalPage ? page : page + 1)" href="javascript:void(0)">
+                            &raquo;
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/applied-job.js"></script>
+}

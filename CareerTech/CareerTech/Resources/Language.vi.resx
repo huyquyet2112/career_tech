@@ -1,0 +1,1197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1 - 2 years" xml:space="preserve">
+    <value>1 - 2 năm</value>
+  </data>
+  <data name="1 year" xml:space="preserve">
+    <value>1 năm</value>
+  </data>
+  <data name="10 – 24 employees" xml:space="preserve">
+    <value>10 – 24 nhân sự</value>
+  </data>
+  <data name="2 - 3 years" xml:space="preserve">
+    <value>2 - 3 năm</value>
+  </data>
+  <data name="200 – 499 employees" xml:space="preserve">
+    <value>200 – 499 nhân sự</value>
+  </data>
+  <data name="25 – 49 employees" xml:space="preserve">
+    <value>25 – 49 nhân sự</value>
+  </data>
+  <data name="3 - 5 years" xml:space="preserve">
+    <value>3 - 5 năm</value>
+  </data>
+  <data name="50 – 199 employees" xml:space="preserve">
+    <value>50 - 199 nhân sự</value>
+  </data>
+  <data name="500+ employees" xml:space="preserve">
+    <value>500+ nhân sự</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Hoạt động</value>
+  </data>
+  <data name="Add Level" xml:space="preserve">
+    <value>Thêm trình độ</value>
+  </data>
+  <data name="Add Province" xml:space="preserve">
+    <value>Thêm tỉnh/thành phố</value>
+  </data>
+  <data name="Add Skill" xml:space="preserve">
+    <value>Thêm kỹ năng</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Quản trị viên</value>
+  </data>
+  <data name="Applicant" xml:space="preserve">
+    <value>Ứng viên</value>
+  </data>
+  <data name="Applied At" xml:space="preserve">
+    <value>Thời gian ứng tuyển</value>
+  </data>
+  <data name="Applied Job Posts" xml:space="preserve">
+    <value>Tin tuyển dụng đã ứng tuyển</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Ứng tuyển</value>
+  </data>
+  <data name="Apply Again" xml:space="preserve">
+    <value>Ứng tuyển lại</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Phê duyệt</value>
+  </data>
+  <data name="Banned" xml:space="preserve">
+    <value>Bị cấm</value>
+  </data>
+  <data name="Basic Information" xml:space="preserve">
+    <value>Thông tin cơ bản</value>
+  </data>
+  <data name="Benefit" xml:space="preserve">
+    <value>Quyền lợi</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Chọn file</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Mã</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Công ty</value>
+  </data>
+  <data name="Company Page" xml:space="preserve">
+    <value>Trang công ty</value>
+  </data>
+  <data name="Company Size" xml:space="preserve">
+    <value>Quy mô công ty</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Xác nhận mật khẩu</value>
+  </data>
+  <data name="Copy Failed" xml:space="preserve">
+    <value>Sao chép thất bại</value>
+  </data>
+  <data name="Copy link" xml:space="preserve">
+    <value>Sao chép đường dẫn</value>
+  </data>
+  <data name="Copy Successful" xml:space="preserve">
+    <value>Sao chép thành công</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Tạo</value>
+  </data>
+  <data name="Create an Account" xml:space="preserve">
+    <value>Tạo tài khoản</value>
+  </data>
+  <data name="Create Jd" xml:space="preserve">
+    <value>Tạo tin tuyển dụng</value>
+  </data>
+  <data name="Created At" xml:space="preserve">
+    <value>Thời gian tạo</value>
+  </data>
+  <data name="Creative and Media" xml:space="preserve">
+    <value>Sáng tạo và Truyền thông</value>
+  </data>
+  <data name="Currency Salary" xml:space="preserve">
+    <value>Kiểu tiền tệ</value>
+  </data>
+  <data name="Current professional level" xml:space="preserve">
+    <value>Trình độ nghề nghiệp hiện tại</value>
+  </data>
+  <data name="Customer Service and Tourism" xml:space="preserve">
+    <value>Dịch vụ Khách hàng và Du lịch</value>
+  </data>
+  <data name="CvNotFound" xml:space="preserve">
+    <value>Hiện tại chưa có CV nào</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="Deselect All" xml:space="preserve">
+    <value>Bỏ chọn tất cả</value>
+  </data>
+  <data name="Didn't receive the code" xml:space="preserve">
+    <value>Không nhận được mã ?</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Lĩnh vực</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Chỉnh sửa</value>
+  </data>
+  <data name="Education and Training" xml:space="preserve">
+    <value>Giáo dục và Đào tạo</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="Enter verfication code" xml:space="preserve">
+    <value>Nhập mã xác nhận</value>
+  </data>
+  <data name="errAdminInfoNotFound" xml:space="preserve">
+    <value>Không tìm thấy thông tin quản trị viên</value>
+  </data>
+  <data name="errBenefitCannotBeEmpty" xml:space="preserve">
+    <value>Phúc lợi không được để trống</value>
+  </data>
+  <data name="errBirthdayInvalidFormat" xml:space="preserve">
+    <value>Ngày sinh phải đúng định dạng yyyy/MM/dd</value>
+  </data>
+  <data name="errCodeIsIncorrect" xml:space="preserve">
+    <value>The code is incorrect</value>
+  </data>
+  <data name="errCompanySizeCannotBeEmpty" xml:space="preserve">
+    <value>Quy mô công ty không được để trống</value>
+  </data>
+  <data name="errConfirmPasswordCannotBeEmpty" xml:space="preserve">
+    <value>Xác nhận mật khẩu không được để trống</value>
+  </data>
+  <data name="errCurrencySalaryCannotBeEmpty" xml:space="preserve">
+    <value>Loại tiền tệ của mức lương không được để trống</value>
+  </data>
+  <data name="errDescriptionCannotBeEmpty" xml:space="preserve">
+    <value>Mô tả không được để trống</value>
+  </data>
+  <data name="errDomainCannotBeEmpty" xml:space="preserve">
+    <value>Lĩnh vực không được để trống</value>
+  </data>
+  <data name="errEmailAlreadyExits" xml:space="preserve">
+    <value>Email đã tồn tại</value>
+  </data>
+  <data name="errEmailNotExits" xml:space="preserve">
+    <value>Email không tồn tại trong hệ thống</value>
+  </data>
+  <data name="errEndDateCannotBeEmpty" xml:space="preserve">
+    <value>Ngày kết thúc không được để trống</value>
+  </data>
+  <data name="errExperienceYearCannotBeEmpty" xml:space="preserve">
+    <value>Số năm kinh nghiệm không được để trống</value>
+  </data>
+  <data name="errGenderCannotEmpty" xml:space="preserve">
+    <value>Giới tính không được để trống</value>
+  </data>
+  <data name="errGeneric" xml:space="preserve">
+    <value>Có lỗi xảy ra, vui lòng thử lại</value>
+  </data>
+  <data name="errGroupDomainNotFound" xml:space="preserve">
+    <value>Không tìm thấy nhóm lĩnh vực</value>
+  </data>
+  <data name="errLevelCannotBeEmpty" xml:space="preserve">
+    <value>Cập độ không được để trống</value>
+  </data>
+  <data name="errMinSalaryCannotBeGreaterThanMaxSalary" xml:space="preserve">
+    <value>Mức lương tối thiểu không được lớn hơn mức lương tối đa</value>
+  </data>
+  <data name="errMinSalaryorMaxSalaryCannotBeEmpty" xml:space="preserve">
+    <value>Mức lương tối thiểu hoặc tối đa không được để trống</value>
+  </data>
+  <data name="errNameCannotEmpty" xml:space="preserve">
+    <value>Tên không được bỏ trống</value>
+  </data>
+  <data name="errPasswordCannotBeEmpty" xml:space="preserve">
+    <value>Mật khẩu không được để trống</value>
+  </data>
+  <data name="errPasswordDoNotStrong" xml:space="preserve">
+    <value>Mật khẩu không đủ mạnh</value>
+  </data>
+  <data name="errPasswordInvalid" xml:space="preserve">
+    <value>Mật khẩu không hợp lệ</value>
+  </data>
+  <data name="errPasswordNotEqual" xml:space="preserve">
+    <value>Mật khẩu và xác nhận mật khẩu không khớp</value>
+  </data>
+  <data name="errProvinceCannotBeEmpty" xml:space="preserve">
+    <value>Tỉnh/thành phố không được để trống</value>
+  </data>
+  <data name="errQuantityCannotBeEmpty" xml:space="preserve">
+    <value>Số lượng không được để trống</value>
+  </data>
+  <data name="errRecordHasExpired" xml:space="preserve">
+    <value>The record has expired</value>
+  </data>
+  <data name="errRecruitmentInfoNotFound" xml:space="preserve">
+    <value>Không tìm thấy thông tin nhà tuyển dụng</value>
+  </data>
+  <data name="errRequirementCannotBeEmpty" xml:space="preserve">
+    <value>Yêu cầu không được để trống</value>
+  </data>
+  <data name="errRoleMissMatch" xml:space="preserve">
+    <value>Vai trò không phù hợp</value>
+  </data>
+  <data name="errStatusCannotBeEmpty" xml:space="preserve">
+    <value>Trạng thái không được để trống</value>
+  </data>
+  <data name="errTitleCannotBeEmpty" xml:space="preserve">
+    <value>Tiêu đề không được để trống</value>
+  </data>
+  <data name="errUnsupportedRole" xml:space="preserve">
+    <value>Vai trò không được hỗ trợ</value>
+  </data>
+  <data name="errUpdateGroupDomainFailed" xml:space="preserve">
+    <value>Cập nhật lĩnh vực thất bại</value>
+  </data>
+  <data name="errUserNoActive" xml:space="preserve">
+    <value>Tài khoản hiện tại đã bị cấm</value>
+  </data>
+  <data name="errUserNotFound" xml:space="preserve">
+    <value>Không tìm thấy người dùng</value>
+  </data>
+  <data name="errWorkingTypeCannotBeEmpty" xml:space="preserve">
+    <value>Kiểu làm việc không được để trống</value>
+  </data>
+  <data name="errWorkLocationCannotBeEmpty" xml:space="preserve">
+    <value>Địa điểm làm việc không được để trống</value>
+  </data>
+  <data name="errWorkScheduleCannotBeEmpty" xml:space="preserve">
+    <value>Lịch làm việc không được để trống</value>
+  </data>
+  <data name="Established Date" xml:space="preserve">
+    <value>Ngày thành lập</value>
+  </data>
+  <data name="Experience Year" xml:space="preserve">
+    <value>Số năm kinh nghiệm</value>
+  </data>
+  <data name="Expiration Date" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Nữ</value>
+  </data>
+  <data name="File CV" xml:space="preserve">
+    <value>Sơ yếu lí lịch</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Lọc</value>
+  </data>
+  <data name="Finance and Accounting" xml:space="preserve">
+    <value>Tài chính và Kế toán</value>
+  </data>
+  <data name="Fit Status" xml:space="preserve">
+    <value>Trạng thái đánh giá</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Quên mật khẩu ?</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="Go Back" xml:space="preserve">
+    <value>Quay trở lại</value>
+  </data>
+  <data name="Group Domain" xml:space="preserve">
+    <value>Nhóm lĩnh vực</value>
+  </data>
+  <data name="Healthcare" xml:space="preserve">
+    <value>Chăm sóc Sức khỏe</value>
+  </data>
+  <data name="Human Resources" xml:space="preserve">
+    <value>Nhân sự</value>
+  </data>
+  <data name="Hybrid" xml:space="preserve">
+    <value>Linh hoạt</value>
+  </data>
+  <data name="InActive" xml:space="preserve">
+    <value>Không hoạt động</value>
+  </data>
+  <data name="InappropriateContent" xml:space="preserve">
+    <value>Nội dung không phù hợp</value>
+  </data>
+  <data name="IncompleteInformation" xml:space="preserve">
+    <value>Thông tin không đầy đủ</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Information Technology and Software" xml:space="preserve">
+    <value>Công nghệ Thông tin và Phần mềm</value>
+  </data>
+  <data name="Jd Detail" xml:space="preserve">
+    <value>Chi tiết tin tuyển dụng</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Việc làm</value>
+  </data>
+  <data name="Job Details" xml:space="preserve">
+    <value>Chi tiết tin tuyển dụng</value>
+  </data>
+  <data name="Job Post List" xml:space="preserve">
+    <value>Danh sách bài tuyển dụng</value>
+  </data>
+  <data name="jobs" xml:space="preserve">
+    <value>việc làm</value>
+  </data>
+  <data name="JobStatusStatistic" xml:space="preserve">
+    <value>Thống kê bài viết tuyển dụng theo trạng thái</value>
+  </data>
+  <data name="Jost Post" xml:space="preserve">
+    <value>Bài tuyển dụng</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Trình độ</value>
+  </data>
+  <data name="Link Web" xml:space="preserve">
+    <value>Đường dẫn trang </value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="Login Admin" xml:space="preserve">
+    <value>Đăng nhập (Quản trị Viên)</value>
+  </data>
+  <data name="Login Applicant" xml:space="preserve">
+    <value>Đăng nhập (Ứng viên)</value>
+  </data>
+  <data name="Login Recruitment" xml:space="preserve">
+    <value>Đăng nhập (Nhà tuyển dụng)</value>
+  </data>
+  <data name="Logistics and Supply Chain" xml:space="preserve">
+    <value>Hậu cần và Chuỗi Cung ứng</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Nam</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Quản lý</value>
+  </data>
+  <data name="Manufacturing and Engineering" xml:space="preserve">
+    <value>Sản xuất và Kỹ thuật</value>
+  </data>
+  <data name="Map Location" xml:space="preserve">
+    <value>Vị trí bản đồ</value>
+  </data>
+  <data name="Marketing and Communication" xml:space="preserve">
+    <value>Tiếp thị và Truyền thông</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Phù hợp</value>
+  </data>
+  <data name="Max Salary" xml:space="preserve">
+    <value>Lương tối đa</value>
+  </data>
+  <data name="Maximun" xml:space="preserve">
+    <value>Tối đa</value>
+  </data>
+  <data name="Message Login" xml:space="preserve">
+    <value>Bạn đã có tài khoản ? Đăng nhập tại đây</value>
+  </data>
+  <data name="Message Logout" xml:space="preserve">
+    <value>Bạn có chắc muốn đăng xuất không ?</value>
+  </data>
+  <data name="Message Register" xml:space="preserve">
+    <value>Bạn chưa có tài khoản ? Đăng kí tại đây</value>
+  </data>
+  <data name="Message Unsave" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn gỡ tin tuyển dụng khỏi danh sách đã lưu không?</value>
+  </data>
+  <data name="Min Salary" xml:space="preserve">
+    <value>Lương tối thiểu</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Tối thiểu</value>
+  </data>
+  <data name="Monday - Friday" xml:space="preserve">
+    <value>Thứ 2 - Thứ 6</value>
+  </data>
+  <data name="Monday - Saturday" xml:space="preserve">
+    <value>Thứ 2 - Thứ 7</value>
+  </data>
+  <data name="More than 5 years" xml:space="preserve">
+    <value>Hơn 5 năm</value>
+  </data>
+  <data name="msgApplyJobFailed" xml:space="preserve">
+    <value>Ứng tuyển thất bại</value>
+  </data>
+  <data name="msgApplyJobSuccess" xml:space="preserve">
+    <value>Ứng tuyển thành công</value>
+  </data>
+  <data name="msgCreateJdFailed" xml:space="preserve">
+    <value>Tạo tin tuyển dụng thất bại</value>
+  </data>
+  <data name="msgCreateJdSuccess" xml:space="preserve">
+    <value>Tạo tin tuyển dụng thành công</value>
+  </data>
+  <data name="msgCreateJobPostApprovalFailed" xml:space="preserve">
+    <value>Tạo trạng thái phê duyệt thất bại</value>
+  </data>
+  <data name="msgCreateJobPostApprovalSuccess" xml:space="preserve">
+    <value>Tạo trạng thái phê duyệt thành công</value>
+  </data>
+  <data name="msgDelete" xml:space="preserve">
+    <value>Bạn có chắc muốn xóa ?</value>
+  </data>
+  <data name="msgDeleteFileFailed" xml:space="preserve">
+    <value>Xóa tệp thất bại</value>
+  </data>
+  <data name="msgDeleteFileSuccess" xml:space="preserve">
+    <value>Xóa tệp thành công</value>
+  </data>
+  <data name="msgDeleteJdFailed" xml:space="preserve">
+    <value>Xóa bản ghi thất bại</value>
+  </data>
+  <data name="msgDeleteJdSuccess" xml:space="preserve">
+    <value>Xóa bản ghi thành công</value>
+  </data>
+  <data name="msgErrorSavingFile" xml:space="preserve">
+    <value>Lỗi khi tải tệp lên</value>
+  </data>
+  <data name="msgJobPostNotFound" xml:space="preserve">
+    <value>Không tìm thấy tin tuyển dụng</value>
+  </data>
+  <data name="msgNofileSelected" xml:space="preserve">
+    <value>Không có tệp nào được tải lên</value>
+  </data>
+  <data name="msgUnsaveJobPostFailed" xml:space="preserve">
+    <value>Gỡ tin tuyển dụng khỏi danh sách không thành công</value>
+  </data>
+  <data name="msgUpdateAdminFailed" xml:space="preserve">
+    <value>Cập nhật thông tin quản trị viên thất bại</value>
+  </data>
+  <data name="msgUpdateAdminSuccess" xml:space="preserve">
+    <value>Cập nhật thông tin quản trị viên thành công</value>
+  </data>
+  <data name="msgUpdateBasicInforFailed" xml:space="preserve">
+    <value>Cập nhật thông tin cơ bản thất bại</value>
+  </data>
+  <data name="msgUpdateBasicInforSuccess" xml:space="preserve">
+    <value>Cập nhật thông tin cơ bản thành công</value>
+  </data>
+  <data name="msgUpdateFitStatusFailed" xml:space="preserve">
+    <value>Cập nhật trạng thái đánh giá thất bại</value>
+  </data>
+  <data name="msgUpdateFitStatusSuccess" xml:space="preserve">
+    <value>Cập nhật trạng thái đánh giá thành công</value>
+  </data>
+  <data name="msgUpdateGroupDomainSuccess" xml:space="preserve">
+    <value>Cập nhật lĩnh vực thành công</value>
+  </data>
+  <data name="msgUpdateJdFailed" xml:space="preserve">
+    <value>Cập nhật tin tuyển dụng thất bại</value>
+  </data>
+  <data name="msgUpdateJdSuccess" xml:space="preserve">
+    <value>Cập nhật tin tuyển dụng thành công</value>
+  </data>
+  <data name="msgUpdateJobPostApprovalFailed" xml:space="preserve">
+    <value>Cập nhật trạng thái bài tuyển dụng thất bại</value>
+  </data>
+  <data name="msgUpdateJobPostApprovalSuccess" xml:space="preserve">
+    <value>Cập nhật trạng thái bài tuyển dụng thành công</value>
+  </data>
+  <data name="msgUpdateLevelFailed" xml:space="preserve">
+    <value>Cập nhật trình độ thất bại</value>
+  </data>
+  <data name="msgUpdateLevelSuccess" xml:space="preserve">
+    <value>Cập nhật trình độ thành công</value>
+  </data>
+  <data name="msgUpdatePasswordFailed" xml:space="preserve">
+    <value>Cập nhật mật khẩu thất bại</value>
+  </data>
+  <data name="msgUpdatePasswordSuccess" xml:space="preserve">
+    <value>Cập nhật mật khẩu thành công</value>
+  </data>
+  <data name="msgUpdateProvinceFailed" xml:space="preserve">
+    <value>Cập nhật tỉnh/thành phố thất bại</value>
+  </data>
+  <data name="msgUpdateProvinceSuccess" xml:space="preserve">
+    <value>Cập nhật tỉnh/thành phố thành công</value>
+  </data>
+  <data name="msgUpdateRecruitmentFailed" xml:space="preserve">
+    <value>Cập nhật nhà tuyển dụng thất bại</value>
+  </data>
+  <data name="msgUpdateRecruitmentSuccess" xml:space="preserve">
+    <value>Cập nhật nhà tuyển dụng thành công</value>
+  </data>
+  <data name="msgUpdateSavedJobFailed" xml:space="preserve">
+    <value>Có lỗi xảy ra khi cập nhật lưu tin tuyển dụng</value>
+  </data>
+  <data name="msgUpdateSkillFailed" xml:space="preserve">
+    <value>Cập nhật kỹ năng thất bại</value>
+  </data>
+  <data name="msgUpdateSkillSuccess" xml:space="preserve">
+    <value>Cập nhật kỹ năng thành công</value>
+  </data>
+  <data name="msgUpdateStatusFailed" xml:space="preserve">
+    <value>Cập nhật trạng thái thất bại</value>
+  </data>
+  <data name="msgUpdateStatusSuccess" xml:space="preserve">
+    <value>Cập nhật trạng thái thành công</value>
+  </data>
+  <data name="msgUploadFileSuccess" xml:space="preserve">
+    <value>Tải tệp lên thất bại</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="Negotiable" xml:space="preserve">
+    <value>Thỏa thuận</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>Mật khẩu mới</value>
+  </data>
+  <data name="No files available" xml:space="preserve">
+    <value>Không có file nào</value>
+  </data>
+  <data name="No Job" xml:space="preserve">
+    <value>Hiện tại chưa có công việc nào</value>
+  </data>
+  <data name="No job applications" xml:space="preserve">
+    <value>Hiện tại chưa ứng tuyển công việc nào</value>
+  </data>
+  <data name="No levels available" xml:space="preserve">
+    <value>Hiện chưa có trình độ nào</value>
+  </data>
+  <data name="No provinces avaible" xml:space="preserve">
+    <value>Hiện chưa có tỉnh/thành phố nào</value>
+  </data>
+  <data name="No saved job" xml:space="preserve">
+    <value>Hiện tại chưa lưu công việc nào</value>
+  </data>
+  <data name="NoApplicants" xml:space="preserve">
+    <value>Hiện tại không có ứng viên nào</value>
+  </data>
+  <data name="NoFileChosen" xml:space="preserve">
+    <value>Không có tệp được chọn</value>
+  </data>
+  <data name="NoRecruiters" xml:space="preserve">
+    <value>Hiện không có nhà tuyển dụng nào</value>
+  </data>
+  <data name="Not required" xml:space="preserve">
+    <value>Không yêu cầu</value>
+  </data>
+  <data name="NotMatch" xml:space="preserve">
+    <value>Không phù hợp</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>Văn phòng</value>
+  </data>
+  <data name="Opening" xml:space="preserve">
+    <value>Đang mở</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="Password Note" xml:space="preserve">
+    <value>Mật khẩu phải dài ít nhất 8 ký tự, chứa cả chữ hoa và chữ thường, một chữ số và một ký tự đặc biệt</value>
+  </data>
+  <data name="PendingApproval" xml:space="preserve">
+    <value>Chờ phê duyệt</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Thông tin cá nhân</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="Post Status History" xml:space="preserve">
+    <value>Lịch sử bài đăng</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Địa điểm</value>
+  </data>
+  <data name="Province for work" xml:space="preserve">
+    <value>Tỉnh/thành phố mong muốn làm việc</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Lý do</value>
+  </data>
+  <data name="Recruiter" xml:space="preserve">
+    <value>Nhà tuyển dụng</value>
+  </data>
+  <data name="Recruitment" xml:space="preserve">
+    <value>Nhà tuyển dụng</value>
+  </data>
+  <data name="Recruitment Management" xml:space="preserve">
+    <value>Quản lý tuyển dụng</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng kí</value>
+  </data>
+  <data name="Register Account" xml:space="preserve">
+    <value>Đăng kí tài khoản</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="Remember Login" xml:space="preserve">
+    <value>Ghi nhớ đăng nhập</value>
+  </data>
+  <data name="Remote" xml:space="preserve">
+    <value>Làm việc từ xa</value>
+  </data>
+  <data name="Repeat Password" xml:space="preserve">
+    <value>Lặp lại mật khẩu</value>
+  </data>
+  <data name="Requirement" xml:space="preserve">
+    <value>Yêu cầu</value>
+  </data>
+  <data name="Resend code" xml:space="preserve">
+    <value>Gửi lại mã</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Đặt lại mật khẩu</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Sơ yếu lí lịch</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Lương</value>
+  </data>
+  <data name="Sales and Business" xml:space="preserve">
+    <value>Bán hàng và Kinh doanh</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Đã lưu</value>
+  </data>
+  <data name="Saved Job Posts" xml:space="preserve">
+    <value>Tin tuyển dụng đã lưu</value>
+  </data>
+  <data name="Select All" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="Select Company Size" xml:space="preserve">
+    <value>Chọn quy mô công ty</value>
+  </data>
+  <data name="Select Currency Salary" xml:space="preserve">
+    <value>Chọn kiểu tiền tệ</value>
+  </data>
+  <data name="Select Domain" xml:space="preserve">
+    <value>Chọn lĩnh vực</value>
+  </data>
+  <data name="Select Experience Year" xml:space="preserve">
+    <value>Chọn số năm kinh nghiệm</value>
+  </data>
+  <data name="Select file" xml:space="preserve">
+    <value>Chọn file</value>
+  </data>
+  <data name="Select Gender" xml:space="preserve">
+    <value>Chọn giới tính</value>
+  </data>
+  <data name="Select Level" xml:space="preserve">
+    <value>Chọn trình độ</value>
+  </data>
+  <data name="Select Province" xml:space="preserve">
+    <value>Chọn địa điểm</value>
+  </data>
+  <data name="Select Reason" xml:space="preserve">
+    <value>Chọn lý do</value>
+  </data>
+  <data name="Select Status" xml:space="preserve">
+    <value>Chọn trạng thái</value>
+  </data>
+  <data name="Select uploaded CV" xml:space="preserve">
+    <value>Chọn CV đã tải lên</value>
+  </data>
+  <data name="Select Work Schedule" xml:space="preserve">
+    <value>Chọn thời gian làm việc</value>
+  </data>
+  <data name="Select Working Type" xml:space="preserve">
+    <value>Chọn kiểu làm việc</value>
+  </data>
+  <data name="Send verfication code" xml:space="preserve">
+    <value>Gửi mã xác nhận</value>
+  </data>
+  <data name="Share on social media" xml:space="preserve">
+    <value>Chia sẻ qua mang xã hội</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Quy mô</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Kỹ năng</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Status Approval" xml:space="preserve">
+    <value>Trạng thái kiểm duyệt</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Đã nộp</value>
+  </data>
+  <data name="SuspiciousActivity" xml:space="preserve">
+    <value>Hoạt động đáng ngờ</value>
+  </data>
+  <data name="There are no job postings" xml:space="preserve">
+    <value>Không có bài viết tuyển dụng</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="Top Recent Job Postings" xml:space="preserve">
+    <value>Tin tuyển dụng mới nhất hàng đầu</value>
+  </data>
+  <data name="Top Recruiters" xml:space="preserve">
+    <value>Nhà tuyển dụng hàng đầu</value>
+  </data>
+  <data name="Unsave" xml:space="preserve">
+    <value>Hủy bỏ lưu</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Tải lên</value>
+  </data>
+  <data name="Upload from device" xml:space="preserve">
+    <value>Tải file từ thiết bị</value>
+  </data>
+  <data name="UserRoleStatistic" xml:space="preserve">
+    <value>Thống kê tài khoản theo vai trò</value>
+  </data>
+  <data name="View Applicant" xml:space="preserve">
+    <value>Xem ứng viên</value>
+  </data>
+  <data name="View CV" xml:space="preserve">
+    <value>Xem CV</value>
+  </data>
+  <data name="View Detail" xml:space="preserve">
+    <value>Xem chi tiết</value>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>Xem chi tiết</value>
+  </data>
+  <data name="View more" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
+  <data name="Viewed" xml:space="preserve">
+    <value>Đã xem</value>
+  </data>
+  <data name="ViolationOfPolicy" xml:space="preserve">
+    <value>Vi phạm chính sách</value>
+  </data>
+  <data name="Welcome Admin" xml:space="preserve">
+    <value>Chào mừng đến với trang quản trị viên</value>
+  </data>
+  <data name="Welcome Applicant" xml:space="preserve">
+    <value>Chào mừng bạn đến với trang CareerTech</value>
+  </data>
+  <data name="Welcome Recruitment" xml:space="preserve">
+    <value>Chào mừng bạn đến với trang nhà tuyển dụng</value>
+  </data>
+  <data name="Work Location" xml:space="preserve">
+    <value>Địa điểm làm viêc</value>
+  </data>
+  <data name="Work Schedule" xml:space="preserve">
+    <value>Thời gian làm việc</value>
+  </data>
+  <data name="Working Hour" xml:space="preserve">
+    <value>Thời gian làm việc</value>
+  </data>
+  <data name="Working Type" xml:space="preserve">
+    <value>Kiểu làm việc</value>
+  </data>
+  <data name="Fewer than 10 employees" xml:space="preserve">
+    <value>Dưới 10 nhân sự</value>
+  </data>
+  <data name="msgCodeSent" xml:space="preserve">
+    <value>Mã mới đã được gửi</value>
+  </data>
+  <data name="msgErrorRetry" xml:space="preserve">
+    <value>Đã xảy ra lỗi. Vui lòng thử lại</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Chờ xét duyệt</value>
+  </data>
+  <data name="Verify Status" xml:space="preserve">
+    <value>Trạng thái xác minh</value>
+  </data>
+  <data name="Get data job post status approval (Admin view)" xml:space="preserve">
+    <value>Lấy dữ liệu trạng thái tin tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Delete file CV" xml:space="preserve">
+    <value>Xóa tệp CV</value>
+  </data>
+  <data name="Apply job" xml:space="preserve">
+    <value>Ứng tuyển công việc</value>
+  </data>
+  <data name="Create job post" xml:space="preserve">
+    <value>Tạo tin tuyển dụng</value>
+  </data>
+  <data name="Create job post status approval" xml:space="preserve">
+    <value>Tạo trạng thái kiểm duyệt tin tuyển dụng</value>
+  </data>
+  <data name="Delete saved job" xml:space="preserve">
+    <value>Xóa công việc đã lưu</value>
+  </data>
+  <data name="Display applicants (Admin view)" xml:space="preserve">
+    <value>Hiển thị danh sách các ứng viên (trang quản trị viên)</value>
+  </data>
+  <data name="Display applicants who applied for a job" xml:space="preserve">
+    <value>Hiển thị danh sách ứng viên ứng tuyển công việc</value>
+  </data>
+  <data name="Display dashboard of admin" xml:space="preserve">
+    <value>Hiển thị trang tổng hợp của quản trị viên</value>
+  </data>
+  <data name="Display dashboard of recruiter" xml:space="preserve">
+    <value>Hiển thị trang tổng hợp của nhà tuyển dụng</value>
+  </data>
+  <data name="Display detail admin" xml:space="preserve">
+    <value>Hiển thị chi tiết của quản trị viên</value>
+  </data>
+  <data name="Display detail applicant (Admin view)" xml:space="preserve">
+    <value>Hiển thị chi tiết ứng viên (trang quản trị viên)</value>
+  </data>
+  <data name="Display detail recruiter (Admin view)" xml:space="preserve">
+    <value>Hiển thị chi tiết nhà tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Display job post (Admin view)" xml:space="preserve">
+    <value>Hiển thị chi tiết tin tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Display job posts (Admin view)" xml:space="preserve">
+    <value>Hiển thị danh sách các tin tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Display job posts by recruiter" xml:space="preserve">
+    <value>Hiển thị các tin tuyển dụng của nhà tuyển dụng</value>
+  </data>
+  <data name="Display recruiters (Admin view)" xml:space="preserve">
+    <value>Hiển thị danh sách các nhà tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Display the applied jobs of the applicant" xml:space="preserve">
+    <value>Hiển thị công việc đã ứng tuyển của ứng viên</value>
+  </data>
+  <data name="Display the detail of applicant" xml:space="preserve">
+    <value>Hiển thị chi tiết của ứng viên</value>
+  </data>
+  <data name="Display the detail of job post of recruiter" xml:space="preserve">
+    <value>Hiển thị chi tiết tin tuyển dụng tạo bởi nhà tuyển dụng</value>
+  </data>
+  <data name="Display the detail of recruiter" xml:space="preserve">
+    <value>Hiển thị chi tiết của nhà tuyển dụng</value>
+  </data>
+  <data name="Display the detail public applicant" xml:space="preserve">
+    <value>Hiển thị chi tiết ứng viên công khai</value>
+  </data>
+  <data name="Display the job post creation form" xml:space="preserve">
+    <value>Hiển thị biểu mẫu tạo tin tuyển dụng</value>
+  </data>
+  <data name="Display the public applicants" xml:space="preserve">
+    <value>Hiển thị trang danh sách ứng viên công khai</value>
+  </data>
+  <data name="Display the saved jobs of the applicant" xml:space="preserve">
+    <value>Hiển thị công việc đã lưu của ứng viên</value>
+  </data>
+  <data name="Get data applicants (Admin view)" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách ứng viên (trang quản trị viên)</value>
+  </data>
+  <data name="Get data applicants who applied for a job" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách ứng viên ứng tuyển công việc</value>
+  </data>
+  <data name="Get data application job" xml:space="preserve">
+    <value>Láy dữ liệu chi tiết bản ghi ứng tuyển</value>
+  </data>
+  <data name="Get data cv files of applicant" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách CV của ứng viên</value>
+  </data>
+  <data name="Get data job posts (Admin view)" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách tin tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Get data job posts of recruiter" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách tin tuyển dụng của nhà tuyển dụng</value>
+  </data>
+  <data name="Get data levels of applicant" xml:space="preserve">
+    <value>Lấy dữ liệu trình độ của ứng viên</value>
+  </data>
+  <data name="Get data perferred provinces" xml:space="preserve">
+    <value>Lấy dữ liệu tỉnh/thành phố mong muốn làm việc của ứng viên</value>
+  </data>
+  <data name="Get data public applicants" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách ứng viên công khai</value>
+  </data>
+  <data name="Get data recruiters (Admin view)" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách nhà tuyển dụng (trang quản trị viên)</value>
+  </data>
+  <data name="Get data skills of applicant" xml:space="preserve">
+    <value>Lấy dữ liệu kỹ năng của ứng viên</value>
+  </data>
+  <data name="Get data user status" xml:space="preserve">
+    <value>Lấy dữ liệu trạng thái người dùng</value>
+  </data>
+  <data name="Save job" xml:space="preserve">
+    <value>Lưu công việc</value>
+  </data>
+  <data name="Update  domains of recruiter" xml:space="preserve">
+    <value>Cập nhật lĩnh vực của nhà tuyển dụng</value>
+  </data>
+  <data name="Update basic info of admin" xml:space="preserve">
+    <value>Cập nhật thông tin cơ bản của quản trị viên</value>
+  </data>
+  <data name="Update basic info of applicant" xml:space="preserve">
+    <value>Cập nhật thông tin cơ bản của ứng viên</value>
+  </data>
+  <data name="Update basic info of recruiter" xml:space="preserve">
+    <value>Cập nhật thông tin cơ bản của nhà tuyển dụng</value>
+  </data>
+  <data name="Update fit status application job" xml:space="preserve">
+    <value>Cập nhật trạng thái đánh giá của bản ghi ứng tuyển</value>
+  </data>
+  <data name="Update job post" xml:space="preserve">
+    <value>Cập nhật tin tuyển dụng</value>
+  </data>
+  <data name="Update job post status approval" xml:space="preserve">
+    <value>Cập nhật trạng thái kiểm duyệt tin tuyển dụng</value>
+  </data>
+  <data name="Update levels of applicant" xml:space="preserve">
+    <value>Cập nhật trình độ của ứng viên</value>
+  </data>
+  <data name="Update provinces of applicant" xml:space="preserve">
+    <value>Cập nhật tỉnh/thành phố mong muốn làm việc của ứng viên</value>
+  </data>
+  <data name="Update skills of applicant" xml:space="preserve">
+    <value>Cập nhật kỹ năng của ứng viên</value>
+  </data>
+  <data name="Update user status" xml:space="preserve">
+    <value>Cập nhật trạng thái người dùng</value>
+  </data>
+  <data name="Upload file CV" xml:space="preserve">
+    <value>Tải tệp CV</value>
+  </data>
+  <data name="Upload image" xml:space="preserve">
+    <value>Tải ảnh</value>
+  </data>
+  <data name="Access Control" xml:space="preserve">
+    <value>Phân quyền</value>
+  </data>
+  <data name="Display detail role (Admin view)" xml:space="preserve">
+    <value>Hiển thị chi tiết vai trò (trang quản trị viên)</value>
+  </data>
+  <data name="Display roles (Admin view)" xml:space="preserve">
+    <value>Hiển thị danh sách vai trò (trang quản trị viên)</value>
+  </data>
+  <data name="errorMessageAccessDenied403" xml:space="preserve">
+    <value>Rất tiếc, quyền truy cập của bạn bị từ chối do lý do bảo mật của máy chủ và dữ liệu nhạy cảm của chúng tôi.</value>
+  </data>
+  <data name="errorMessageLoadingFailed" xml:space="preserve">
+    <value>Rất tiếc, chúng tôi đang gặp sự cố khi tải trang bạn đang tìm.</value>
+  </data>
+  <data name="errorSuggestionReturnLate" xml:space="preserve">
+    <value>Vui lòng quay lại sau.</value>
+  </data>
+  <data name="errorTitle403" xml:space="preserve">
+    <value>Ối!!! Xin lỗi...</value>
+  </data>
+  <data name="errorTitleInternal500" xml:space="preserve">
+    <value>Ôi! Lỗi máy chủ nội bộ!</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>Chức năng</value>
+  </data>
+  <data name="Get data roles(Admin view)" xml:space="preserve">
+    <value>Lấy dữ liệu danh sách vai trò (trang quản trị viên)</value>
+  </data>
+  <data name="Go Home" xml:space="preserve">
+    <value>Quay lại trang chủ</value>
+  </data>
+  <data name="Method" xml:space="preserve">
+    <value>Phương thức</value>
+  </data>
+  <data name="msgUpdateRolePermissionFailed" xml:space="preserve">
+    <value>Cập nhật quyền của vai trò thất bại</value>
+  </data>
+  <data name="msgUpdateRolePermissionSuccess" xml:space="preserve">
+    <value>Cập nhật quyền của vai trò thành công</value>
+  </data>
+  <data name="No Role Found" xml:space="preserve">
+    <value>Không tìm thấy vai trò nào</value>
+  </data>
+  <data name="Permission" xml:space="preserve">
+    <value>Quyền</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Vai trò</value>
+  </data>
+  <data name="Role Permission" xml:space="preserve">
+    <value>Quyền của vai trò</value>
+  </data>
+  <data name="Update role permissions (Admin view)" xml:space="preserve">
+    <value>Cập nhật quyền của vai trò (trang quản trị viên)</value>
+  </data>
+  <data name="User Role" xml:space="preserve">
+    <value>Vai trò của người dùng</value>
+  </data>
+  <data name="Newest blog" xml:space="preserve">
+    <value>Blog mới nhất</value>
+  </data>
+</root>

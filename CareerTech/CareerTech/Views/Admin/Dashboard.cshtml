@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+    var userStatistic = ViewData["userStatistic"] as IList<UserRoleStatisticDto>;
+    var jobStatistic = ViewData["jobStatistic"] as IList<JobStatusStatisticDto>;
+    
+    var statusLabelsJson = Json.Serialize(jobStatistic.Select(x => SharedLocalizer[x.StatusApproval.ToString()].Value).ToList());
+
+    var statusCountsJson = Json.Serialize(jobStatistic.Select(x => x.Count).ToList());
+
+    var roleLabelsJson = Json.Serialize(userStatistic.Select(x => SharedLocalizer[x.Role.ToString()].Value).ToList());
+
+    var roleCountsJson = Json.Serialize(userStatistic.Select(x => x.Count).ToList());
+}
+<div class="row justify-content-center">
+    <div class="col-md-5 mb-4">
+        <div class="chart-container p-3 bg-white shadow-sm rounded">
+            <h5 class="text-center mb-3">@SharedLocalizer["UserRoleStatistic"]</h5>
+            <canvas id="roleChart" height="300"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-5 mb-4">
+        <div class="chart-container p-3 bg-white shadow-sm rounded">
+            <h5 class="text-center mb-3">@SharedLocalizer["JobStatusStatistic"]</h5>
+            <canvas id="jobStatusChart" height="300"></canvas>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const jobStatusData = {
+            labels: @Html.Raw(statusLabelsJson),
+            counts: @Html.Raw(statusCountsJson)
+        };
+
+        const userRoleData = {
+            labels: @Html.Raw(roleLabelsJson),
+            counts: @Html.Raw(roleCountsJson)
+        };
+
+        const ctx = document.getElementById("jobStatusChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: jobStatusData.labels,
+                datasets: [{
+                    label: '@SharedLocalizer["JobStatusStatistic"]',
+                    data: jobStatusData.counts,
+                    backgroundColor: [
+                        '#28a745', // Approved
+                        '#dc3545', 
+                        '#ffc107', 
+                        '#6c757d'  
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 5,
+                            callback: function(value){
+                                return Number.isInteger(value) ? value : null;
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: '@SharedLocalizer["Count"]'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '@SharedLocalizer["Status"]'
+                        }
+                    }
+                }
+            }
+        });
+
+        const roleCtx = document.getElementById("roleChart").getContext("2d");
+
+        new Chart(roleCtx, {
+            type: 'doughnut', 
+            data: {
+                labels: userRoleData.labels,
+                datasets: [{
+                    label: '@SharedLocalizer["UserRoleStatistic"]',
+                    data: userRoleData.counts,
+                    backgroundColor: [
+                        '#007bff', 
+                        '#17a2b8',
+                        '#ffc107' 
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
+                                const value = context.parsed;
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${context.label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+

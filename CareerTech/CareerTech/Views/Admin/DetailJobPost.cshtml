@@ -1,0 +1,405 @@
+﻿@model JdPost
+@{
+    Layout = "_LayoutAdmin";
+    var user = new UserInfo(this.Context.User);
+    var jobPost = Model;
+    var groupSkills = ViewData["jdSkill"] != null ? ViewData["jdSkill"] as List<JdGroupSkillResponseDto> : [];
+    var jdLevels = ViewData["jdLevel"] != null ? ViewData["jdLevel"] as List<LevelResponseDto> : [];
+    var jdProvinces = ViewData["jdProvince"] != null ? ViewData["jdProvince"] as List<ProvinceResponseDto> : [];
+    var domains = ViewData["domains"] != null ? ViewData["domains"] as List<Domain> : [];
+    var jobPostApprovals = ViewData["jobPostApprovals"] != null ? ViewData["jobPostApprovals"] as List<JobPostStatusApprovalDto> : [];
+    var listGroupDomains = domains?.GroupBy(us => us?.GroupDomain?.Name);
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-2">
+    <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-4" type="button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> @SharedLocalizer["Go Back"]
+    </button>
+</div>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Title"]</label>
+                        <p class="mb-1">@jobPost.Title</p>
+                    </div>
+                    @{
+                        string locationText = "";
+
+                        if (jdProvinces != null)
+                        {
+                            var selectedNames = jdProvinces
+                            .Where(p => p.isSelected)
+                            .Select(p => p.Name)
+                            .ToList();
+
+                            locationText = string.Join(", ", selectedNames);
+                        }
+                    }
+                    <div class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-map-marker-alt text-danger mr-2"></i>
+                        <span>@locationText</span>
+                    </div>
+                    @{
+                        string salaryText = "";
+
+                        if (jobPost.MinSalary.HasValue && !jobPost.MaxSalary.HasValue)
+                        {
+                            salaryText = $"{SharedLocalizer["Minimum"]}: {jobPost.MinSalary.Value:N0} {jobPost.CurrencySalary}";
+                        }
+                        else if (!jobPost.MinSalary.HasValue && jobPost.MaxSalary.HasValue)
+                        {
+                            salaryText = $"{SharedLocalizer["Maximum"]}: {jobPost.MaxSalary.Value:N0} {jobPost.CurrencySalary}";
+                        }
+                        else if (jobPost.MinSalary.HasValue && jobPost.MaxSalary.HasValue)
+                        {
+                            salaryText = $"{jobPost.MinSalary.Value:N0} - {jobPost.MaxSalary.Value:N0} {jobPost.CurrencySalary}";
+                        }
+
+                        if (!string.IsNullOrEmpty(salaryText))
+                        {
+                            <div class="mb-3">
+                                <label class="font-weight-bold">@SharedLocalizer["Salary"]: </label>
+                                <span>@salaryText</span>
+                            </div>
+                        }
+                    }
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Domain"]: </label>
+                        @{
+                            if (domains != null)
+                            {
+                                foreach (var domain in domains)
+                                {
+                                    if (jobPost.DomainId == domain.Id)
+                                    {
+                                        <span class="mt-1">@domain.Name</span>
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                    @{
+                        var selectedSkillNames = new List<string>();
+
+                        if (groupSkills != null)
+                        {
+                            foreach (var groupSkill in groupSkills)
+                            {
+                                foreach (var skill in groupSkill.Skills)
+                                {
+                                    if (skill.IsSelected)
+                                    {
+                                        selectedSkillNames.Add(skill.Name);
+                                    }
+                                }
+                            }
+                        }
+
+                        var skillText = string.Join(", ", selectedSkillNames);
+
+                        if (!string.IsNullOrEmpty(skillText))
+                        {
+                            <div class="mb-3">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>@skillText</span>
+                            </div>
+                        }
+                    }
+
+                    <div class="row mb-3">
+                        <div class="col-4 d-flex">
+                            <label class="font-weight-bold">@SharedLocalizer["Status"]: </label>
+                            @{
+                                @foreach (EJdPostStatus status in Enum.GetValues(typeof(EJdPostStatus)))
+                                {
+                                    if (status == jobPost.Status)
+                                    {
+                                        <span class="ml-1">@SharedLocalizer[$"{status}"]</span>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="col-4 d-flex">
+                            <label class="font-weight-bold">@SharedLocalizer["End Date"]</label>
+                            <span class="ml-1">@jobPost.EndDate?.ToString("yyyy/MM/dd")</span>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <label class="font-weight-bold">@SharedLocalizer["Quantity"]: </label>
+                            <span class="ml-1">@jobPost.Quantity</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-briefcase text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Experience Year"]</small><br />
+                                <strong>
+                                    @{
+                                        foreach (EExperienceYear experience in Enum.GetValues(typeof(EExperienceYear)))
+                                        {
+                                            var convertExperienceYear = experience.ConvertExperienceLevel();
+                                            if (experience == jobPost.ExperienceYear)
+                                            {
+                                                @convertExperienceYear
+                                            }
+                                        }
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-layer-group text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Level"]</small><br />
+                                <strong>
+                                    @{
+                                        var selectedLevel = jdLevels?.Where(x => x.IsSelected).Select(x => x.Name).ToList() ?? new List<string>();
+                                        var levelText = string.Join(", ", selectedLevel);
+                                        @levelText
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <div class="bg-light rounded mr-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-tasks text-secondary"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">@SharedLocalizer["Working Type"]</small><br />
+                                <strong>
+                                    @{
+                                        foreach (EWorkingType workingtype in Enum.GetValues(typeof(EWorkingType)))
+                                        {
+                                            if (workingtype == jobPost.WorkingType)
+                                            {
+                                                @SharedLocalizer[$"{workingtype}"]
+                                            }
+                                        }
+                                    }
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Description"]</label>
+                        <div>
+                            @Html.Raw(jobPost.Description)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Requirement"]</label>
+                        <div>
+                            @Html.Raw(jobPost.Requirement)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Benefit"]</label>
+                        <div>
+                            @Html.Raw(jobPost.Benefits)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="font-weight-bold">@SharedLocalizer["Work Location"]</label>
+                        <div>
+                            @Html.Raw(jobPost.WorkLocation)
+                        </div>
+                    </div>
+                    @{
+                        if (jobPost.WorkingHours != null)
+                        {
+                            <div class="mb-3">
+                                <label class="font-weight-bold">@SharedLocalizer["Working Hour"]</label>
+                                <div>
+                                    @Html.Raw(jobPost.WorkingHours)
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="card-title text-secondary">@SharedLocalizer["Post Status History"]</h4>
+                    <div class="d-flex align-items-center justify-content-end mb-4">
+                        <button type="button" class="btn btn-success btn-sm" onclick="addJobPostStatusApproval(this)" data-userid="@user.Id" data-jobPostid="@jobPost?.Id">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="list-group">
+                        @{
+                            if (jobPostApprovals != null)
+                            {
+                                var index = 1;
+                                foreach (var jobPostStatus in jobPostApprovals)
+                                {
+                                    <div class="list-group-item py-3">
+                                        <div class="row align-items-center text-center mb-1">
+                                            <div class="col-4 text-start">
+                                                <strong class="text-dark">
+                                                    @jobPostStatus.CreatedAt?.ToString("yyyy/MM/dd")
+                                                </strong>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <span class="badge px-3 py-2 cusJobPostApproval-@jobPostStatus.Status">
+                                                    @SharedLocalizer[$"{jobPostStatus.Status}"]
+                                                </span>
+                                            </div>
+
+                                            <div class="col-2 text-end">
+                                                @if (index != 1)
+                                                {
+                                                    <button type="button"
+                                                            class="btn btn-light border btn-sm"
+                                                            onclick="editJobPostApproval(this)"
+                                                            data-jobPostApprovalid="@jobPostStatus.Id"
+                                                            data-userId="@user.Id">
+                                                        <i class="fas fa-cog"></i>
+                                                    </button>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="text-muted small mt-1">
+                                            @if (jobPostStatus.UpdatedAt != null)
+                                            {
+                                                <div class="mb-1">
+                                                    @SharedLocalizer["Update"]:
+                                                    @jobPostStatus.UpdatedAt?.ToString("yyyy/MM/dd")
+                                                </div>
+                                            }
+
+                                            @if (jobPostStatus.UserApproval != null)
+                                            {
+                                                <div class="mb-1">@jobPostStatus.UserApproval</div>
+                                            }
+
+                                            @if (jobPostStatus.Reason != null)
+                                            {
+                                                <div>@SharedLocalizer[$"{jobPostStatus.Reason}"]</div>
+                                            }
+                                        </div>
+
+                                    </div>
+                                    index++;
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addJobPostStatusApprovalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <form id="formAddJobPostStatusApproval">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Create"]</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="status" class="form-label">@SharedLocalizer["Status"]</label>
+                            <select name="status" class="selectpicker form-control" data-live-search="true" id="statusJobPostApproval">
+                                <option value="-1">@SharedLocalizer["Select Status"]</option>
+                                @{
+                                    foreach (EJdPostApproval status in Enum.GetValues(typeof(EJdPostApproval)))
+                                    {
+                                        <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                    }
+                                }
+                            </select>
+                            <span class="text-center error-message d-none" id="statusJobPostApproval-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="reason" class="form-label">@SharedLocalizer["Reason"]</label>
+                            <select name="reason" class="selectpicker form-control" data-live-search="true" id="reasonJobPostApproval">
+                                <option value="-1">@SharedLocalizer["Select Reason"]</option>
+                                @{
+                                    foreach (EJdStatusReason reason in Enum.GetValues(typeof(EJdStatusReason)))
+                                    {
+                                        <option value="@reason">@SharedLocalizer[$"{reason}"]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">  
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">@SharedLocalizer["Cancel"]</button>
+                    <button class="btn btn-success" type="button" id="createJobPostApproval">@SharedLocalizer["Save"]</button>
+                </div>
+            </div>
+        </form> 
+    </div>
+</div>
+
+<div class="modal fade" id="editJobPostApprovalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <form id="formEditJobPostApproval">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Edit"]</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="status" class="form-label">@SharedLocalizer["Status"]</label>
+                            <select name="status" class="selectpicker form-control" data-live-search="true" id="editStatusJobPostApproval">
+                                <option value="-1">@SharedLocalizer["Select Status"]</option>
+                                @{
+                                    foreach (EJdPostApproval status in Enum.GetValues(typeof(EJdPostApproval)))
+                                    {
+                                        <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                    }
+                                }
+                            </select>
+                            <span class="text-center error-message d-none" id="statusJobPostApproval-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="reason" class="form-label">@SharedLocalizer["Reason"]</label>
+                            <select name="reason" class="selectpicker form-control" data-live-search="true" id="editReasonJobPostApproval">
+                                <option value="-1">@SharedLocalizer["Select Reason"]</option>
+                                @{
+                                    foreach (EJdStatusReason reason in Enum.GetValues(typeof(EJdStatusReason)))
+                                    {
+                                        <option value="@reason">@SharedLocalizer[$"{reason}"]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">@SharedLocalizer["Cancel"]</button>
+                    <button class="btn btn-success" type="button" id="editJobPostApproval">@SharedLocalizer["Save"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/admin-job-post-detail.js"></script>
+}
+

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["title"] = "403 Forbidden";
+}
+<div class="col-md-12 text-center">
+    <h1>403</h1>
+    <h2>@SharedLocalizer["errorTitle403"]</h2>
+    <p>
+        @SharedLocalizer["errorMessageAccessDenied403"]
+    </p>
+    <p>
+        @SharedLocalizer["errorSuggestionReturnLate"]
+    </p>
+    <a href="#" onclick="window.history.back()" class="btn btn-outline-secondary">@SharedLocalizer["Go Back"]</a>
+</div>

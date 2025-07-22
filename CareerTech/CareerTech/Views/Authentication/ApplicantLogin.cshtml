@@ -1,0 +1,399 @@
+﻿@{
+    Layout = null;
+    var language = Context.Request.Cookies["lang"] ?? "en";
+    var languages = AppSettingProvider.AppSettings.LanguageSupports;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@SharedLocalizer["Login Applicant"]</title>
+
+    <link href="~/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/public/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/css/bootstrap-select.min.css" />
+
+</head>
+
+<body class="bg-gradient-primary body-login">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="applicants/">Career Tech</a>
+                <div>
+                    <select class="selectpicker form-control" onchange="changeLanguage(this)">
+                        @{
+                            foreach (var item in languages)
+                            {
+                                if (language == item.Code)
+                                {
+                                        <option value="@item.Code" selected
+                                                data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'></span>">
+                                        </option>
+                                }
+                                else
+                                {
+                                        <option value="@item.Code"
+                                                data-content="<span><img src='@item.Image' style='width:20px; margin-right:5px;'></span>">
+                                        </option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="margin-top: 112px;"></div>
+    <div class="container mt-5">
+        <div class="position-fixed p-3 top-md-20 end-0" id="toastPlacementNotification" style="z-index: 1090"></div>
+        <div class="row" id="notificationAlert">
+            @{
+                if (ViewBag.error != null && ViewBag.error != "")
+                {
+                        <div class="col">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                @ViewBag.error
+                            </div>
+                        </div>
+                }
+            }
+            @{
+                if (ViewBag.success != null && ViewBag.success != "")
+                {
+                        <div class="col mb-3">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                @ViewBag.success
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">@SharedLocalizer["Welcome Applicant"]</h1>
+                                    </div>
+                                    <form class="user" action="/login" id="loginApplicantForm" method="POST">
+                                        <div class="form-group">
+                                            <input type="hidden" name="role" value="@EUserRole.Applicant" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="returnUrl" id="returnUrlInput" value="@ViewBag.returnUrl" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="userName" class="form-control form-control-user" id="applicantUserNameInput" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <div id="userNameError" class="text-danger"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" name="password" class="form-control form-control-user" id="applicantPasswordInput" placeholder="Password">
+                                                <span class="input-group-text" style="border-left: none; border-radius: 0 0.25rem 0.25rem 0">
+                                                    <i class="fas fa-eye custom-a-file" id="togglePassword"></i>
+                                                </span>
+                                            </div>
+                                            <div id="passwordError" class="text-danger"></div>
+                                            
+                                        </div>
+                                        <div class="form-group d-flex justify-content-between align-items-center">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" name="stayLogin" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    @SharedLocalizer["Remember Login"]
+                                                </label>
+                                            </div>
+                                            <a href="#" data-toggle="modal" data-target="#modalForgotPassword" class="small">@SharedLocalizer["Forgot Password"]</a>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">@SharedLocalizer["Login"]</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-absolute p-3" id="toastPlacementNotification"></div>
+
+    <footer class="border-top footer text-muted text-center bg-white">
+        <div class="container">
+            &copy; @DateTime.Now.Year.ToString() - Career Tech
+        </div>
+    </footer>
+
+    <div class="modal fade" id="modalForgotPassword" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="applyJobLabel" aria-hidden="true">
+        <div class="modal-dialog" enctype="multipart/form-data">
+            <form id="formForgotPassword">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewSkillLabel">@SharedLocalizer["Forgot Password"]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="d-none text-danger" id="errorForgotPassword"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="email" class="form-label">@SharedLocalizer["Email"]</label>
+                                    <input type="email" name="email" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@SharedLocalizer["Send verfication code"]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalVerificationCode" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="applyJobLabel" aria-hidden="true">
+        <div class="modal-dialog" enctype="multipart/form-data">
+            <form id="formVerificationCode">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewSkillLabel">@SharedLocalizer["Enter verfication code"]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body text-center">
+                            <div class="form-group">
+                                <input type="email" name="email" class="d-none" id="emailVerificationCode"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="d-none text-danger" id="errorVerificationCode"></span>
+                                </div>
+                            </div>
+                            <div class="code-container d-flex justify-content-center mb-3">
+                                <input type="text" class="code-input" maxlength="1">
+                                <input type="text" class="code-input" maxlength="1">
+                                <input type="text" class="code-input" maxlength="1">
+                                <input type="text" class="code-input" maxlength="1">
+                                <input type="text" class="code-input" maxlength="1">
+                                <input type="text" class="code-input" maxlength="1">
+                            </div>
+
+                            <small class="form-text text-muted">
+                                @SharedLocalizer["Didn't receive the code"]
+                                <a href="#" id="resendCode">@SharedLocalizer["Resend code"]</a>
+                            </small>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span id="notificationResendCode" class="text-primary"
+                                          data-msg-code-sent="@SharedLocalizer["msgCodeSent"]"
+                                          data-msg-error-retry="@SharedLocalizer["msgErrorRetry"]">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@SharedLocalizer["Cofirm"]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="formResetPassword">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordUserModalLabel">@SharedLocalizer["Reset Password"]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <strong>@SharedLocalizer["Password Note"]</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="d-none" id="emailResetPassword" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="d-none text-danger" id="errorResetPassword"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span class="text-danger error-message d-none" id="differentPasswordError"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <span class="text-danger error-message d-none" id="passwordStrongError"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="newPassword" class="form-label">@SharedLocalizer["New Password"]</label>
+                                    <div class="input-group">
+                                        <input name="newPassword" type="password" class="form-control" id="newPassword" required>
+                                        <span class="input-group-text">
+                                            <i class="password fas fa-eye" data-input="newPassword"></i>
+                                        </span>
+                                    </div>
+                                    <span class="text-danger error-message d-none" id="newPasswordError"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="confirmPassword" class="form-label">@SharedLocalizer["Confirm Password"]</label>
+                                    <div class="input-group">
+                                        <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" required>
+                                        <span class="input-group-text">
+                                            <i class="password fas fa-eye" data-input="confirmPassword"></i>
+                                        </span>
+                                    </div>
+                                    <span class="text-danger error-message d-none" id="confirmPasswordError"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@SharedLocalizer["Close"]</button>
+                        <button type="submit" class="btn btn-primary">@SharedLocalizer["Save"]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/public/vendor/jquery/jquery.min.js"></script>
+    <script src="~/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/public/js/sb-admin-2.min.js"></script>
+    <script src="~/js/function.js"></script>
+    <script src="~/js/login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta3/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script>
+        var constraints = {
+            userName: {
+                presence: { allowEmpty: false, message: "is required" }
+            },
+            password: {
+                presence: { allowEmpty: false, message: "is required" }
+            }
+        };
+
+        var form = document.getElementById('loginApplicantForm');
+        var userNameField = document.getElementById('applicantUserNameInput');
+        var passwordField = document.getElementById('applicantPasswordInput');
+        var userNameError = document.getElementById('userNameError');
+        var passwordError = document.getElementById('passwordError');
+
+        passwordField.addEventListener('input', function () {
+            if (passwordField.value.length < 8 && passwordField.value.length > 0) {
+                passwordError.textContent = "Password must be at least 8 characters long";
+            }
+            else if (passwordField.value.length == 0) {
+                passwordError.textContent = "Password is not empty";
+            }
+
+            else {
+                passwordError.textContent = "";
+            }
+        });
+
+        userNameField.addEventListener('input', function () {
+            if (userNameField.value.length > 0) {
+                userNameError.textContent = "";
+            }
+            else {
+                userNameError.textContent = "Username is not empty";
+            }
+        });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = {
+                userName: userNameField.value,
+                password: passwordField.value,
+            };
+
+            var errors = validate(formData, constraints);
+            userNameError.textContent = '';
+            passwordError.textContent = '';
+            if (errors) {
+                if (errors.userName) {
+                    userNameError.textContent = errors.userName.join(', ');
+                }
+                if (errors.password) {
+                    passwordError.textContent = errors.password.join(', ');
+                }
+            }
+            else {
+                form.submit();
+            }
+        });
+
+    </script>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('applicantPasswordInput');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const returnUrl = getQueryParam("returnUrl");
+            if (returnUrl) {
+                document.getElementById("returnUrlInput").value = returnUrl;
+            }
+        });
+    </script>
+
+    <script>
+        var data
+    </script>
+</body>
+</html>
+

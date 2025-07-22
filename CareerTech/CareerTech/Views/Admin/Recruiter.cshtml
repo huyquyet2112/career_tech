@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+    var query = ViewData["query"] as QueryUserDto;
+}
+
+<form id="filterAdminRecruiter">
+    <div class="card shadow mb-4">
+        <div class="card-header custom-card-header" data-bs-toggle="collapse" role="button" data-bs-target="#filterContent" aria-expanded="true" aria-controls="filterContent">
+            <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">
+                <span>
+                    @SharedLocalizer["Filter"]
+                </span>
+                <i class="fas fa-chevron-down collapse-icon"></i>
+            </h6>
+        </div>
+        <div id="filterContent" class="collapse show">
+            <div class="card-body row">
+                <div class="col-md-4">
+                    <label for="name" class="form-label">@SharedLocalizer["Name"]</label>
+                    <input name="name" class="form-control" value="@query?.Name" id="name" />
+                </div>
+                <div class="col-md-4">
+                    <label for="status" class="form-label">@SharedLocalizer["Status"]</label>
+                    <select name="status" class="form-control selectpicker" data-live-search="true" id="status" multiple
+                            data-actions-box="true" data-selected-text-format="count > 3">
+                        @{
+                            foreach(EUserStatus status in Enum.GetValues(typeof(EUserStatus)))
+                            {
+                                if(query != null && query.IsSelectedStatus(status))
+                                {
+                                    <option selected value="@status">@SharedLocalizer[$"{status}"]</option>
+                                }
+                                else
+                                {
+                                    <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-self-center">
+                    <button type="submit" id="filterBtn" class="btn btn-primary">@SharedLocalizer["Filter"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped custom-datatable" id="adminRecruiterTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">@SharedLocalizer["Avatar"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Name"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Jost Post"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Status"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Verify Status"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Action"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editStatusRecruiterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <form id="formEditStatusRecruiter">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Edit"]</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <span class="text-danger error-message d-none" id="editUser-error"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="status" class="form-label">@SharedLocalizer["Status"]</label>
+                            <select name="status" class="selectpicker form-control" data-live-search="true" id="statusRecruiter">
+                                @{
+                                    foreach (EUserStatus status in Enum.GetValues(typeof(EUserStatus)))
+                                    {
+                                        <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label for="verifyStatus" class="form-label">@SharedLocalizer["Verify Status"]</label>
+                            <select name="verifyStatus" class="selectpicker form-control" data-live-search="true" id="verifyStatusRecruiter">
+                                @{
+                                    foreach (EVerifyStatus status in Enum.GetValues(typeof(EVerifyStatus)))
+                                    {
+                                        <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">@SharedLocalizer["Cancel"]</button>
+                    <button class="btn btn-success" type="submit">@SharedLocalizer["Save"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/admin-recruiter.js"></script>
+    <script>
+        var stringAdminRecruiter = {
+            Active: '@SharedLocalizer["Active"]',
+            InActive: '@SharedLocalizer["InActive"]',
+            NoRecruiters: '@SharedLocalizer["NoRecruiters"]',
+            Approved: '@SharedLocalizer["Approved"]',
+            Pending: '@SharedLocalizer["Pending"]',
+            Rejected: '@SharedLocalizer["Rejected"]'
+        }
+    </script>
+}

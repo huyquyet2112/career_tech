@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_LayoutRecruiter";
+    var jobStatistic = ViewData["jobStatistic"] as IList<JobStatusStatisticDto>;
+
+    var statusLabelsJson = Json.Serialize(jobStatistic.Select(x => SharedLocalizer[x.StatusApproval.ToString()].Value).ToList());
+
+    var statusCountsJson = Json.Serialize(jobStatistic.Select(x => x.Count).ToList());
+}
+
+<div class="chart-container">
+    <h5 class="text-center mb-3">@SharedLocalizer["JobStatusStatistic"]</h5>
+    <canvas id="jobStatusChart" height="300"></canvas>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const jobStatusData = {
+            labels: @Html.Raw(statusLabelsJson),
+            counts: @Html.Raw(statusCountsJson)
+        };
+
+        const ctx = document.getElementById("jobStatusChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: jobStatusData.labels,
+                datasets: [{
+                    label: '@SharedLocalizer["JobStatusStatistic"]',
+                    data: jobStatusData.counts,
+                    backgroundColor: [
+                        '#28a745', // Approved
+                        '#dc3545',
+                        '#ffc107',
+                        '#6c757d'
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 5,
+                            callback: function(value){
+                                return Number.isInteger(value) ? value : null;
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: '@SharedLocalizer["Count"]'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '@SharedLocalizer["Status"]'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

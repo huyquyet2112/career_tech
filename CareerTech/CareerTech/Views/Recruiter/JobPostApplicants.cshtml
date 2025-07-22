@@ -1,0 +1,101 @@
+﻿@model JdPost
+@{
+    Layout = "_LayoutRecruiter";
+    var jobPost = Model;
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-2">
+    <div class="d-flex justify-content-center">
+        <h4>@Model.Title</h4>
+    </div>
+    <button class="btn btn-outline-primary me-md-2 btn-sm mt-auto mb-4" type="button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> @SharedLocalizer["Go Back"]
+    </button>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped custom-datatable" id="jobPostApplicantsTable" width="100%" cellspacing="0" data-jobPostid="@jobPost.Id">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">@SharedLocalizer["Name"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["File CV"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Status"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Fit Status"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Applied At"]</th>
+                        <th scope="col" class="text-center">@SharedLocalizer["Action"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editJobPostApplicationModal" tabindex="-1" aria-labelledby="editJobPostApplicationLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="formEditJobPostApplication">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Edit"]</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="jobPostTitle" class="form-label">@SharedLocalizer["Title"]</label>
+                            <input type="text" class="form-control" name="jobPostTitle" id="jobPostTitle" readonly/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="nameApplicant" class="form-label">@SharedLocalizer["Name"]</label>
+                            <input type="text" class="form-control" name="nameApplicant" id="nameApplicant" readonly/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="description" class="form-label">@SharedLocalizer["Description"]</label>
+                            <textarea class="form-control" name="description" id="description" rows="5" readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="fitStatus" class="form-label">@SharedLocalizer["Fit Status"]</label>
+                            <select name="fitStatus" class="selectpicker form-control" data-live-search="true" id="fitStatusApplication">
+                                <option value="-1">@SharedLocalizer["Select Status"]</option>
+                                @{
+                                    foreach (EFitApplyJob status in Enum.GetValues(typeof(EFitApplyJob)))
+                                    {
+                                        <option value="@status">@SharedLocalizer[$"{status}"]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">@SharedLocalizer["Cancel"]</button>
+                    <button class="btn btn-success" type="submit">@SharedLocalizer["Save"]</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/job-post-applicants.js"></script>
+    <script>
+        var stringLocalizer = {
+            ViewApplicant: '@SharedLocalizer["View Applicant"]',
+            Edit: '@SharedLocalizer["Edit"]',
+            NoApplicants: '@SharedLocalizer["NoApplicants"]',
+            Match: '@SharedLocalizer["Match"]',
+            NotMatch: '@SharedLocalizer["NotMatch"]'
+        }
+    </script>
+}

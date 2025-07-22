@@ -1,0 +1,227 @@
+﻿@model ViewJobPostPaginationDto
+@{
+    Layout = "_Layout";
+    var jobPosts = Model.JobPost;
+    var pagination = Model.Pagination;
+    var page = pagination == null ? 1 : pagination.Page;
+    var totalPage = pagination == null ? 1 : pagination.TotalPage;
+    var totalRecrod = pagination == null ? 1 : pagination.TotalRecord;
+    var pageSize = pagination == null ? 1 : pagination.PageSize;
+    var levels = ViewData["levels"] != null ? ViewData["levels"] as List<Level> : [];
+    var provinces = ViewData["provinces"] != null ? ViewData["provinces"] as List<Province> : [];
+    var skills = ViewData["skills"] != null ? ViewData["skills"] as List<Skill> : [];
+    var groupSkills = skills?.GroupBy(us => us?.GroupSkill?.Name);
+    var query = ViewData["query"] as QueryListJobPostDto;
+}
+<div class="container my-5 recruiter-detail-container">
+    <div class="card shadow mb-5">
+        <div class="card-body">
+            <form id="formQueryJobPublic">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="title" class="form-label">@SharedLocalizer["Title"]</label>
+                        <input type="text" class="form-control" name="title" value="@query?.Title" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="provinces" class="form-label">@SharedLocalizer["Province"]</label>
+                        <select name="provinces" id="provinces" class="selectpicker form-control" data-live-search="true" data-actions-box="true" multiple data-selected-text-format="count > 3">
+                            @{
+                                if (provinces != null)
+                                {
+                                    foreach (var province in provinces)
+                                    {
+                                        if ((query != null) && query.IsSelectedProvince(province.Id))
+                                        {
+                                            <option selected value="@province.Id">@province.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@province.Id">@province.Name</option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="levels" class="form-label">@SharedLocalizer["Level"]</label>
+                        <select name="levels" id="levels" class="selectpicker form-control" data-live-search="true" data-actions-box="true" multiple data-selected-text-format="count > 3">
+                            @{
+                                if (levels != null)
+                                {
+                                    foreach (var level in levels)
+                                    {
+                                        if ((query != null) && query.IsSelectedLevel(level.Id))
+                                        {
+                                            <option selected value="@level.Id">@level.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@level.Id">@level.Name</option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="skills" class="form-label">@SharedLocalizer["Skill"]</label>
+                        <select name="skills" id="skills" class="selectpicker form-control" data-live-search="true" data-actions-box="true" multiple data-selected-text-format="count > 3">
+                            @{
+                                if (groupSkills != null)
+                                {
+                                    foreach (var groupSkill in groupSkills)
+                                    {
+                                        <optgroup label="@groupSkill.Key">
+                                            @{
+                                                foreach (var skill in groupSkill)
+                                                {
+                                                    if ((query != null) && query.IsSelectedSkill(skill.Id))
+                                                    {
+                                                        <option selected value="@skill.Id">@skill.Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@skill.Id">@skill.Name</option>
+                                                    }
+                                                }
+                                            }
+                                        </optgroup>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="workingType" class="form-label">@SharedLocalizer["WorkingType"]</label>
+
+                        <select name="workingType" id="workingType" class="selectpicker form-control" data-live-search="true"
+                                data-actions-box="true" multiple data-selected-text-format="count > 3">
+                            @{
+                                foreach (EWorkingType workingType in Enum.GetValues(typeof(EWorkingType)))
+                                {
+                                    if ((query != null) && query.IsSelectedWorkingType(workingType))
+                                    {
+                                        <option selected value="@workingType">@SharedLocalizer[$"{workingType}"]</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@workingType">@SharedLocalizer[$"{workingType}"]</option>
+                                    }
+                                }
+
+                            }
+                        </select>
+
+                    </div>
+                    <div class="col-md-4 mb-3 d-flex align-items-end justify-content-end">
+                        <button type="submit" id="filterBtn" class="btn btn-primary">@SharedLocalizer["Filter"]</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 mb-3">
+        <h5>@totalRecrod @SharedLocalizer["jobs"]</h5>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            @foreach (var job in jobPosts)
+            {
+                <div class="job-card mb-4 p-3">
+                    <div class="d-flex align-items-start">
+                        <div class="flex-shrink-0 mr-3">
+                            @if (job.AvatarRecruiter != null)
+                            {
+                                <img src="@job.AvatarRecruiter" alt="Logo" class="avatar-lg">
+                            }
+                            else
+                            {
+                                @await Html.PartialAsync(ViewMapping.ViewDefaultCompany)
+                            }
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-2">
+                                <a href="/applicants/jobs/@job.Id" class="text-primary font-weight-bold">@job.Title</a>
+                                <span class="text-success font-weight-bold">
+                                    @{
+                                        string salaryText = job.MinSalary.HasValue && job.MaxSalary.HasValue ? $"{job.MinSalary:N0} - {job.MaxSalary:N0} {job.CurrencySalary}" : job.MinSalary.HasValue ? $"{SharedLocalizer["Minimum"].Value}: {job.MinSalary:N0} {job.CurrencySalary}" : job.MaxSalary.HasValue ? $"{SharedLocalizer["Maximum"].Value}: {job.MaxSalary:N0} {job.CurrencySalary}" : SharedLocalizer["Negotiable"].Value;
+                                    }
+                                    @salaryText
+                                </span>
+                            </div>
+                            <div class="mb-2">
+                                <a href="/applicants/public-recruiters/@job.RecruiterId" class="text-muted small d-block">@job.NameRecruiter</a>
+                            </div>
+
+                            <div class="mb-2">
+                                <span class="badge-clean">@SharedLocalizer[$"{ConvertLevel.ConvertExperienceLevel(job.ExperienceYear)}"]</span>
+                                <span class="badge-clean">@SharedLocalizer[$"{job.WorkingType}"]</span>
+                                @if (job.Province?.Any() == true)
+                                {
+                                    @foreach (var province in job.Province)
+                                    {
+                                        <span class="badge-clean">@province.Name</span>
+                                    }
+                                }
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <span class="badge-clean">@job.Domain</span>
+                                    @if (job.Level?.Any() == true)
+                                    {
+                                        @foreach (var level in job.Level)
+                                        {
+                                            <span class="badge-clean">@level.Name</span>
+                                        }
+                                    }
+                                </div>
+                                <button class="btn btn-success btn-sm" onclick="window.location.href='/applicants/jobs/@job.Id'">
+                                    @SharedLocalizer["Apply"]
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="d-flex justify-content-end mt-4">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item @(page == 1 ? "disabled" : "")">
+                            <a class="page-link pagination-user" data-page="@(page == 1 ? page : page - 1)" href="javascript:void(0)">&laquo;</a>
+                        </li>
+                        @if (page > 3)
+                        {
+                            <li class="page-item"><a class="page-link pagination-user" data-page="1" href="javascript:void(0)">1</a></li>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        }
+                        @for (int i = Math.Max(1, page - 2); i <= Math.Min(totalPage, page + 2); i++)
+                        {
+                            <li class="page-item @(i == page ? "active" : "")">
+                                <a class="page-link @(i != page ? "pagination-user" : "")" data-page="@i" href="javascript:void(0)">@i</a>
+                            </li>
+                        }
+                        @if (page < totalPage - 2)
+                        {
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            <li class="page-item"><a class="page-link pagination-user" data-page="@totalPage" href="javascript:void(0)">@totalPage</a></li>
+                        }
+                        <li class="page-item @(page == totalPage ? "disabled" : "")">
+                            <a class="page-link pagination-user" data-page="@(page == totalPage ? page : page + 1)" href="javascript:void(0)">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/job-post-public.js"></script>
+}
+
