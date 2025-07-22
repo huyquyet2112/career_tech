@@ -1,21 +1,36 @@
-# CareerTech
+## 🚀 Main Features
 
-Website hỗ trợ tuyển dụng và tìm kiếm việc làm.
+- User registration & login for both candidates and recruiters
+- Password reset and password change
+- Job browsing and application
+- Candidate profile management
+- Job post management
+- Candidate evaluation
+- Role-based access control (RBAC) using JWT
+- Dashboard with real-time statistics
+- Custom middleware for request processing
+- Multilingual support (Localization)
+- Image upload and preview (Avatar)
+- Responsive UI for both desktop and mobile
+- Data export and print-friendly views
 
-## 🚀 Tính năng chính
-
-- Đăng ký & đăng nhập cho ứng viên và nhà tuyển dụng
-- Tìm kiếm và ứng tuyển việc làm
-- Quản lý hồ sơ ứng viên
-- Quản lý tin tuyển dụng
-- Phân quyền (RBAC)
-- Dashboard thống kê
-
-## 🛠️ Công nghệ sử dụng
+## 🛠️ Technologies Used
 
 - ASP.NET Core MVC
 - Entity Framework Core
+- JWT (JSON Web Token)
 - SQL Server
+- Custom Middleware
+- Localization (.resx)
 - jQuery & Bootstrap 4
+- JavaScript
 - DataTables
 - Font Awesome
+
+## 📁 Structure
+
+- `Controllers/` - Handle HTTP requests and define routing logic
+- `Views/` - Razor views for UI rendering
+- `Services/` - Business logic layer
+- `Models/` - Data models for the database and view binding
+- `wwwroot/` - Static files (images, CSS, JS)
